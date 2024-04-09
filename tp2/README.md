@@ -119,10 +119,65 @@ select o.order_id, od.unit_price, od.quantity, (od.unit_price * od.quantity) as 
 
 19) Obtener la lista de todos los nombres de los clientes y los nombres de los proveedores
 ```sql
-
+select company_name from suppliers
+	union
+select company_name from customers;
 ```
 
 20) Obtener la lista de los nombres de todos los empleados y los nombres de los gerentes de departamento
 ```sql
-
+select e.first_name as name from employees e
+	union
+select e2.first_name from employees e2 
+	inner join employees e3 on e2.reports_to = e3.employee_id
+order by name;
 ```
+
+21) Obtener los productos del stock que han sido vendidos
+```sqlS
+select product_name, product_id 
+	from products p 
+		where product_id in (select distinct  product_id  from order_details od)
+```
+
+22)
+```sql
+select company_name from customers c 
+	where c.customer_id in
+		(select distinct customer_id  from orders o where ship_country = 'Argentina');
+```
+
+23) Obtener el nombre de los productos que nunca han sido pedidos por clientes de
+Francia
+
+```sql
+select distinct product_name  from products p where product_id in
+(select product_id  from order_details od where order_id in
+(select distinct order_id from orders where 
+	customer_id in (select distinct customer_id  from customers c  where country != 'France')));
+```
+
+24) Obtener la cantidad de productos vendidos por identificador de orden
+```sql
+select order_id, sum(quantity)as sum from order_details od  group by order_id;
+```
+
+25) Obtener el promedio de productos en stock por producto
+```sql
+select product_name , avg(units_in_stock) from products p group by product_name 
+```
+
+26) Cantidad de productos en stock por producto, donde haya más de 100 productos en stock
+```sql
+select product_name , sum(units_in_stock) from products p group by product_name 
+	having sum(units_in_stock) > 100
+```
+
+27) Obtener el promedio de pedidos por cada compañía y solo mostrar aquellas con un promedio de pedidos superior a 10
+```sql
+select company_name, avg(o.order_id) from customers as c 
+	inner join orders o 
+		on c.customer_id = o.customer_id group by c.company_name 
+```
+
+28)
