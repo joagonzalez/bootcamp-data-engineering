@@ -180,4 +180,21 @@ select company_name, avg(o.order_id) from customers as c
 		on c.customer_id = o.customer_id group by c.company_name 
 ```
 
-28)
+28) Obtener el nombre del producto y su categoría, pero muestre "Discontinued" en lugar del nombre de la categoría si el producto ha sido descontinuado
+```sql
+select  p.product_name,
+	case 
+		when p.discontinued = 0 then c.category_name else 'Discontinued' 
+	end as NewCategory
+from products p inner join categories c on
+	p.category_id = c.category_id;
+```
+
+29) Obtener el nombre del empleado y su título, pero muestre "Gerente de Ventas" en lugar del título si el empleado es un gerente de ventas (Sales Manager)
+```sql
+select first_name , last_name ,
+	case 
+		when title != 'Sales Manager' then title else 'Gerente de Ventas' 
+	end as NewTitle
+from employees e 
+```
