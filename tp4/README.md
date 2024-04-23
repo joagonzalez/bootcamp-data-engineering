@@ -43,3 +43,8 @@ Found 1 items
 -rw-r--r--   1 hadoop supergroup     154805 2024-04-15 22:52 /ingest/starwars.csv
 
 ```
+
+sqoop
+```bas
+sqoop list-databases --connect jdbc:postgresql://postgres/northwind --username postgres -P
+```
