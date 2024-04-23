@@ -44,7 +44,3 @@ Found 1 items
 
 ```
 
-sqoop
-```bas
-sqoop list-databases --connect jdbc:postgresql://postgres/northwind --username postgres -P
-```
