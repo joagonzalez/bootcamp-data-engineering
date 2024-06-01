@@ -1,0 +1,58 @@
+---
+version: '3'
+services:
+  postgres:
+    image: fedepineyro/edvai_postgres:v1
+    environment:
+      POSTGRES_PASSWORD: edvai
+      POSTGRES_USER: postgres
+      POSTGRES_DB: northwind
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "northwind"]
+      interval: 5s
+      retries: 5
+    restart: always
+    networks:
+      - bootcamp
+
+  etl:
+    image: joagonzalez/edvai-etl:v6
+    command: tail -f /dev/null  # chmod a+x /home/hadoop/scripts/start-services.sh && ./home/hadoop/scripts/start-services.sh 
+    volumes:
+      - ./core-site.xml:/home/hadoop/hadoop/etc/hadoop/core-site.xml
+      - ./start-services.sh:/home/hadoop/scripts/start-services.sh
+    ports:
+      - 8010:8010
+      - 8088:8088 
+      - 8080:8080
+      - 9000:9000
+      - 10000:10000 # hive
+    networks:
+      - bootcamp
+
+  nifi:
+    image: apache/nifi
+    networks:
+      - bootcamp
+    ports:
+      - 8443:8443
+    volumes:
+      # - ./ingest.sh:/home/nifi/ingest/ingest.sh
+      - ./nifi:/home/nifi/hadoop:ro
+      - ./:/home/nifi/ingest:rw
+      - bucket-volume:/home/nifi/bucket
+    environment:
+      - NIFI_WEB_HTTP_PORT=8443
+      - NIFI_WEB_HTTP_HOST=0.0.0.0
+      - NIFI_WEB_PROXY_CONTEXT_PATH=/
+
+volumes:
+  postgres-db-volume: {}
+  bucket-volume: {}
+  
+networks:
+  bootcamp:

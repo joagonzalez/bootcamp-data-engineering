@@ -77,6 +77,16 @@ vied85rfpusz   edv_nifi       replicated   1/1        apache/nifi:latest        
 
 ```
 
+Arrancamos los servicios de edv_etl
+
+Dentro del contenedro etl
+
+```bash
+docker exec -it edv_etl bash
+cd /home/hadoop/scripts
+./start-services.sh
+```
+
 ### sqoop
 ```bash
 sqoop list-databases --connect jdbc:postgresql://postgres/northwind --username postgres -P
