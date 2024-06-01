@@ -26,11 +26,14 @@ services:
       - ./core-site.xml:/home/hadoop/hadoop/etc/hadoop/core-site.xml
       - ./start-services.sh:/home/hadoop/scripts/start-services.sh
     ports:
-      - 8010:8010
-      - 8088:8088 
-      - 8080:8080
-      - 9000:9000
+      - 8010:8010 # airflow
+      - 8088:8088 # hadoop infra UI
+      - 9000:9000 # hadoop
+      - 9870:9870 # hadoop file system UI
+      - 8080:8080 # spark UI
       - 10000:10000 # hive
+      - 10002:10002 # hive UI
+
     networks:
       - bootcamp
 
