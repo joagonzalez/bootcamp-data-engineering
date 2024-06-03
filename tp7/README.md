@@ -1,5 +1,5 @@
-# Data Ingestion: 
-Scoop and Apache Nifi
+# Data Ingestion and Transformation: 
+Spark and Apache Nifi
 
 
 ### Infraestructura
@@ -77,41 +77,192 @@ vied85rfpusz   edv_nifi       replicated   1/1        apache/nifi:latest        
 
 ```
 
-### PySpark ETL
+### Apache Nifi
+1) Se crea script y se valida descarga post ejecución
+```bash
+# ingest.sh
+## download yellow_tripdata_2021 dataset
+wget -O /home/nifi/ingest/yellow_tripdata_2021-01.parquet https://dataengineerpublic.blob.core.windows.net/data-engineer/yellow_tripdata_2021-01.parquet
 
-Dentro del contenedro etl
+
+nifi@8ad31a877cab:~$ ./ingest/ingest.sh 
+nifi@8ad31a877cab:~$ ls ingest/
+starwars.csv  yellow_tripdata_2021-01.parquet
+```
+
+2) Ingestar a hdfs el archivo parquet
+
+<img src="nifi.png" />
 
 ```bash
-docker exec -it edv_etl bash
-cd /home/hadoop/scripts
-./start-services.sh
+# pre nifi job
+hadoop@a009e4d476b5:/$ hdfs dfs -chmod 777 /nifi
+hadoop@a009e4d476b5:/$ hdfs dfs -ls /nifi
 
-# una vez que los servicios se encuentran corriendo
+# post nifi job
+hadoop@a009e4d476b5:/$ hdfs dfs -ls /nifi
+Found 1 items
+-rw-r--r--   1 nifi supergroup   21686067 2024-06-03 18:35 /nifi/yellow_tripdata_2021-01.parquet
+
+```
+
+### PySpark ETL
+
+3) 
+
+#### 1
+a. VendorId Integer
+b. Tpep_pickup_datetime date
+c. Total_amount double
+d. Donde el total (total_amount sea menor a 10 dólares)
+
+
+```bash
 pyspark
 df = spark.read.option("header", "true").csv("/ingest/yellow_tripdata_2021-01.csv")
 df.head()
 
+from pyspark.sql.types import DateType
+
+df_task_1 = df.select(df.VendorID.cast("int"), df.tpep_pickup_datetime.cast(DateType()), df.total_amount.cast("float"))
+
 # crear vista
-df.createOrReplaceTempView("vtripdata")
+df_task_1.createOrReplaceTempView("vtripdata")
 
 # ahora se pueden realizar queries SQL sobre el DF
-df_transform = spark.sql("select * from vtripdata where fare_amount > 10")
+df_task_1_result = spark.sql("select * from vtripdata where total_amount < 10")
  
-# select para filtrar columnas
-df_2 = df.select(df.forename, df.surname, df.nationality, df.points.cast("int"))
+df_task_1_result.show()
 ```
 
-### Hive
+<img src="1.png" />
+
+#### 2 
+Mostrar los 10 días que más se recaudó dinero (tpep_pickup_datetime, total
+amount)
+
 ```bash
-su hadoop
-hive
-show tables;
-use tripdata_table;
-# change location to supported format by docker-compose
-hive> describe formatted tripdata_table;
-hive> alter table tripdata_table set location 'hdfs://localhost:9000/user/hive/warehouse/tables';
-# qry
-hive> select * from tripdata_table limit 10;
-OK
-Time taken: 0.103 seconds
+df_task_2_result = spark.sql("select tpep_pickup_datetime, sum(total_amount) as agg from vtripdata group by tpep_pickup_datetime order by agg desc limit 10")
 ```
+
+<img src="2.png" />
+
+#### 3 
+Mostrar los 10 viajes que menos dinero recaudó en viajes mayores a 10 millas (trip_distance, total_amount)
+
+```bash
+df_task_3 = df.select(df.VendorID.cast("int"), df.tpep_pickup_datetime.cast(DateType()), df.total_amount.cast("float"), df.trip_distance.cast("float"))
+
+# crear vista
+df_task_3.createOrReplaceTempView("vtripdata2")
+
+df_task_3_result = spark.sql("select trip_distance, total_amount from vtripdata2 where trip_distance > 10 order by total_amount")
+```
+<img src="3.png" />
+
+#### 4 
+Mostrar los viajes de más de dos pasajeros que hayan pagado con tarjeta de crédito (mostrar solo las columnas trip_distance y tpep_pickup_datetime)
+
+```bash
+df_task_5 = df.select(df.VendorID.cast("int"), df.tpep_pickup_datetime.cast(DateType()), df.total_amount.cast("float"), df.trip_distance.cast("float"), df.passenger_count.cast("int"), 
+df.payment_type.cast("int"))
+
+# crear vista
+df_task_5.createOrReplaceTempView("vtripdata3")
+
+df_task_5_result = spark.sql("select trip_distance, tpep_pickup_datetime from vtripdata3 where passenger_count > 2  and payment_type = 1 order by tpep_pickup_datetime desc")
+```
+
+<img src="4.png" />
+
+#### 5
+Mostrar los 7 viajes con mayor propina en distancias mayores a 10 millas (mostrar campos tpep_pickup_datetime, trip_distance, passenger_count, tip_amount)
+
+```bash
+df_task_6 = df.select(df.VendorID.cast("int"), df.tpep_pickup_datetime.cast(DateType()), df.total_amount.cast("float"), df.trip_distance.cast("float"), df.passenger_count.cast("int"), 
+df.payment_type.cast("int"), df.tip_amount.cast("float"))
+
+# crear vista
+df_task_6.createOrReplaceTempView("vtripdata4")
+
+
+df_task_6_result = spark.sql("select trip_distance, tpep_pickup_datetime, passenger_count, tip_amount from vtripdata4 where trip_distance > 10 order by tip_amount desc")
+```
+
+<img src="6.png" />
+
+#### 6
+Mostrar para cada uno de los valores de RateCodeID, el monto total y el monto
+promedio. Excluir los viajes en donde RateCodeID es ‘Group Ride’
+
+```bash
+df_task_7 = df.select(df.VendorID.cast("int"), df.tpep_pickup_datetime.cast(DateType()), df.total_amount.cast("float"), df.trip_distance.cast("float"), df.passenger_count.cast("int"), 
+df.payment_type.cast("int"), df.tip_amount.cast("float"), df.RatecodeID)
+
+# crear vista
+df_task_7.createOrReplaceTempView("vtripdata5")
+
+
+df_task_7_result = spark.sql("select RatecodeID, sum(total_amount), avg(toal_amount) from vtripdata5 where RatecodeID != 'Group Ride' order by RatecodeID")
+```
+<img src="7.png" />
+
+# Hive and Spark: 
+
+### 1
+En Hive, crear las siguientes tablas (internas) en la base de datos tripdata en hive:
+
+ - payments(VendorID, tpep_pickup_datetetime, payment_type, total_amount)
+ - passengers(tpep_pickup_datetetime, passenger_count, total_amount)
+ - tolls (tpep_pickup_datetetime, passenger_count, tolls_amount, total_amount)
+ - congestion (tpep_pickup_datetetime, passenger_count, congestion_surcharge,
+total_amount)
+ - distance (tpep_pickup_datetetime, passenger_count, trip_distance,
+total_amount)
+
+```sql
+CREATE DATABASE edv;
+USE edv;
+
+CREATE TABLE edv.payments(VendorID int, 
+  tpep_pickup_datetetime TIMESTAMP,
+  payment_type int,
+  total_amount float
+);
+
+CREATE TABLE edv.passengers(
+  tpep_pickup_datetetime TIMESTAMP, 
+  passenger_count INT,
+  total_amount FLOAT
+);
+
+CREATE TABLE edv.tolls(
+  tpep_pickup_datetetime TIMESTAMP, 
+  passenger_count INT,
+  tolls_amount FLOAT,
+  total_amount FLOAT
+);
+
+CREATE TABLE edv.congestion(
+  tpep_pickup_datetetime TIMESTAMP, 
+  passenger_count INT,
+  congestion_surcharge FLOAT,
+  total_amount FLOAT
+);
+
+CREATE TABLE edv.distance(
+  tpep_pickup_datetetime TIMESTAMP, 
+  passenger_count INT,
+  trip_distance FLOAT,
+  total_amount FLOAT
+);
+```
+
+<img src="tables.png" />
+
+### 2
+<img src="passengers.png" />
+
+<img src="distance.png" />
+
+### 3
