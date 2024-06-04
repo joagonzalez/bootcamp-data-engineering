@@ -84,7 +84,6 @@ vied85rfpusz   edv_nifi       replicated   1/1        apache/nifi:latest        
 ## download yellow_tripdata_2021 dataset
 wget -O /home/nifi/ingest/yellow_tripdata_2021-01.parquet https://dataengineerpublic.blob.core.windows.net/data-engineer/yellow_tripdata_2021-01.parquet
 
-
 nifi@8ad31a877cab:~$ ./ingest/ingest.sh 
 nifi@8ad31a877cab:~$ ls ingest/
 starwars.csv  yellow_tripdata_2021-01.parquet
@@ -96,6 +95,7 @@ starwars.csv  yellow_tripdata_2021-01.parquet
 
 ```bash
 # pre nifi job
+nifi@8ad31a877cab:~$ hdfs dfs -mkdir /nifi
 hadoop@a009e4d476b5:/$ hdfs dfs -chmod 777 /nifi
 hadoop@a009e4d476b5:/$ hdfs dfs -ls /nifi
 
@@ -266,3 +266,198 @@ CREATE TABLE edv.distance(
 <img src="distance.png" />
 
 ### 3
+Hacer ingest del file: Yellow_tripodata_2021-01.csv
+
+<img src="load_hdfs_nifi.png" />
+
+```bash
+hadoop@abedd1677a4f:~$ hdfs dfs -ls /nifi
+Found 1 items
+-rw-r--r--   1 nifi supergroup   21686067 2024-06-04 11:05 /nifi/yellow_tripdata_2021-01.parquet
+```
+
+### 4 y 5
+Insertar en la tabla payments (VendorID, tpep_pickup_datetetime, payment_type, total_amount) Solamente los pagos con tarjeta de crédito
+
+Segun documentación, el payment_type = 1 es tarjeta
+de credito.
+
+<img src="credit_card.png" />
+
+
+```bash
+pyspark
+df = spark.read.option("header", "true").csv("/ingest/yellow_tripdata_2021-01.csv")
+df.head()
+
+from pyspark.sql.types import DateType
+from pyspark.sql import SparkSession
+
+df = df.select(df.VendorID.cast("int"), 
+df.tpep_pickup_datetime.cast(DateType()), 
+df.payment_type.cast("int"), 
+df.total_amount.cast("double")
+)
+
+# check cast
+df.select("VendorID").summary().show()
+
+# crear vista
+df.createOrReplaceTempView("tripdata")
+
+# ahora se pueden realizar queries SQL sobre el DF
+df_result = spark.sql("select * from tripdata where payment_type = 1 limit 10")
+ 
+df_result.show()
+
+spark = SparkSession.builder.enableHiveSupport().getOrCreate()
+
+df_result.write.mode('overwrite').saveAsTable('edv.payments')
+```
+
+<img src="describe_hive.png" />
+
+<img src="payments.png" />
+
+
+### 6
+Insertar en la tabla passengers (tpep_pickup_datetetime, passenger_count,
+total_amount) los registros cuya cantidad de pasajeros sea mayor a 2 y el total del viaje cueste más de 8 dólares
+
+```bash
+from pyspark.sql.types import DateType
+from pyspark.sql import SparkSession
+
+df = spark.read.option("header", "true").csv("/ingest/yellow_tripdata_2021-01.csv")
+
+df = df.select(
+df.tpep_pickup_datetime.cast(DateType()), 
+df.passenger_count.cast("int"), 
+df.total_amount.cast("double")
+)
+
+# check cast
+df.select("passenger_count").summary().show()
+
+# crear vista
+df.createOrReplaceTempView("passengers")
+
+# ahora se pueden realizar queries SQL sobre el DF
+df_result = spark.sql("select * from passengers where passenger_count > 2 and total_amount > 8")
+ 
+df_result.show()
+
+spark = SparkSession.builder.enableHiveSupport().getOrCreate()
+
+df_result.write.mode('overwrite').saveAsTable('edv.passengers')
+```
+<img src="passengers_schema.png" />
+
+<img src="passengers_describe.png" />
+
+<img src="passengers_list.png" />
+
+### 7
+Insertar en la tabla tolls (tpep_pickup_datetetime, passenger_count, tolls_amount, total_amount) los registros que tengan pago de peajes mayores a 0.1 y cantidad de pasajeros mayores a 1
+
+```bash
+from pyspark.sql.types import DateType
+from pyspark.sql import SparkSession
+
+df = spark.read.option("header", "true").csv("/ingest/yellow_tripdata_2021-01.csv")
+
+df = df.select(
+df.tpep_pickup_datetime.cast(DateType()), 
+df.passenger_count.cast("int"), 
+df.tolls_amount.cast("double"), 
+df.total_amount.cast("double")
+)
+
+# check cast
+df.select("tolls_amount").summary().show()
+
+# crear vista
+df.createOrReplaceTempView("tolls")
+
+# ahora se pueden realizar queries SQL sobre el DF
+df_result = spark.sql("select * from tolls where tolls_amount > 0.1 and passenger_count > 1")
+ 
+df_result.show()
+
+spark = SparkSession.builder.enableHiveSupport().getOrCreate()
+
+df_result.write.mode('overwrite').saveAsTable('edv.tolls')
+```
+<img src="tolls_schema.png" />
+
+<img src="tolls_describe.png" />
+
+<img src="tolls_list.png" />
+
+### 8
+Insertar en la tabla congestion (tpep_pickup_datetetime, passenger_count,
+congestion_surcharge, total_amount) los registros que hayan tenido congestión en los viajes en la fecha 2021-01-18
+
+```bash
+df = spark.read.option("header", "true").csv("/ingest/yellow_tripdata_2021-01.csv")
+
+df = df.select(
+df.tpep_pickup_datetime.cast(DateType()), 
+df.passenger_count.cast("int"), 
+df.congestion_surcharge.cast("double"), 
+df.total_amount.cast("double")
+)
+
+# check cast
+df.select("congestion_surcharge").summary().show()
+
+# crear vista
+df.createOrReplaceTempView("congestion")
+
+# ahora se pueden realizar queries SQL sobre el DF
+df_result = spark.sql("select * from congestion where tpep_pickup_datetime = '2021-01-18' and congestion_surcharge != 0")
+ 
+df_result.show()
+
+spark = SparkSession.builder.enableHiveSupport().getOrCreate()
+
+df_result.write.mode('overwrite').saveAsTable('edv.congestion')
+```
+<img src="congestion_schema.png" />
+
+<img src="congestion_describe.png" />
+
+<img src="congestion_list.png" />
+
+### 9
+Insertar en la tabla distance tpep_pickup_datetetime, passenger_count, trip_distance, total_amount) los registros de la fecha 2020-12-31 que hayan tenido solamente un pasajero (passenger_count = 1) y hayan recorrido más de 15 millas (trip_distance)
+
+```bash
+df = spark.read.option("header", "true").csv("/ingest/yellow_tripdata_2021-01.csv")
+
+df = df.select(
+df.tpep_pickup_datetime.cast(DateType()), 
+df.passenger_count.cast("int"), 
+df.trip_distance.cast("double"), 
+df.total_amount.cast("double")
+)
+
+# check cast
+df.select("trip_distance").summary().show()
+
+# crear vista
+df.createOrReplaceTempView("distance")
+
+# ahora se pueden realizar queries SQL sobre el DF
+df_result = spark.sql("select * from distance where tpep_pickup_datetime = '2021-01-31' and passenger_count = 1 and trip_distance > 15")
+df_result.show()
+
+spark = SparkSession.builder.enableHiveSupport().getOrCreate()
+
+df_result.write.mode('overwrite').saveAsTable('edv.distance')
+```
+<img src="distance_schema.png" />
+
+<img src="distance_describe.png" />
+
+<img src="distance_list.png" />
