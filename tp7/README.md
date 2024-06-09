@@ -111,10 +111,10 @@ Found 1 items
 3) 
 
 #### 1
-a. VendorId Integer
-b. Tpep_pickup_datetime date
-c. Total_amount double
-d. Donde el total (total_amount sea menor a 10 dólares)
+- a. VendorId Integer
+- b. Tpep_pickup_datetime date
+- c. Total_amount double
+- d. Donde el total (total_amount sea menor a 10 dólares)
 
 
 ```bash
