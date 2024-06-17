@@ -1,5 +1,7 @@
 # Diseño de arquitectura para procesamiento de datos
 
+<img src="architecture.png" />
+
 ### Problema
 Te acaban de contratar en una empresa de la industria minera como Data Engineer/Data Architect para delinear su arquitectura y sugerir qué herramientas deberían utilizar para ingestar la data, procesar la información, almacenarla en un datawarehouse, orquestar y realizar Dashboards que ayuden a la toma de decisiones basadas en datos.
 
