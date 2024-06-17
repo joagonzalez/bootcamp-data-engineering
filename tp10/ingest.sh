@@ -1,16 +1,15 @@
-## download f1 dataset @landing zone
+## running ingest pipeline with scoop
 
-
-wget -nc -O /home/hadoop/landing/results.csv https://dataengineerpublic.blob.core.windows.net/data-engineer/f1/results.csv
-wget -nc -O /home/hadoop/landing/drivers.csv https://dataengineerpublic.blob.core.windows.net/data-engineer/f1/drivers.csv
-wget -nc -O /home/hadoop/landing/constructors.csv https://dataengineerpublic.blob.core.windows.net/data-engineer/f1/constructors.csv
-wget -nc -O /home/hadoop/landing/races.csv https://dataengineerpublic.blob.core.windows.net/data-engineer/f1/races.csv
-
-# ingest @hadoop
-/home/hadoop/hadoop/bin/hdfs dfs -put /home/hadoop/landing/results.csv /ingest
-/home/hadoop/hadoop/bin/hdfs dfs -put /home/hadoop/landing/races.csv /ingest
-/home/hadoop/hadoop/bin/hdfs dfs -put /home/hadoop/landing/drivers.csv /ingest
-/home/hadoop/hadoop/bin/hdfs dfs -put /home/hadoop/landing/constructors.csv /ingest
-
-# check
-/home/hadoop/hadoop/bin/hdfs  dfs -ls /ingest
+sqoop import \
+--connect jdbc:postgresql://postgres/northwind \
+--username postgres \
+--m 1 \
+--P \
+--target-dir /sqoop/ingest \
+--as-parquetfile \
+--query "select c.customer_id, c.company_name, orders_joined.quantity 
+            from customers as c inner join
+                (select od.quantity, o.customer_id from order_details as od inner join orders as o on od.order_id = o.order_id) 
+            as orders_joined on c.customer_id = orders_joined.customer_id where \$CONDITIONS
+            order by orders_joined.quantity desc;" \
+--delete-target-dir
