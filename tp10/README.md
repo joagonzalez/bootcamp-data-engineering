@@ -158,7 +158,6 @@ df.show()
 
 spark = SparkSession.builder.enableHiveSupport().getOrCreate()
 df.write.mode('overwrite').saveAsTable('accesos.results')
-
 ```
 
 <img src="pyspark_output.png" />
@@ -193,6 +192,24 @@ LOCATION 'hdfs://etl:9000/user/hive/warehouse/tables/accesos';
 
 ```sql
 CREATE DATABASE northwind_analytics;
+
+CREATE EXTERNAL TABLE IF NOT EXISTS northwind_analytics.products_sold( 
+  customer_id string,
+  company_name string,
+  quantity int
+)
+LOCATION 'hdfs://etl:9000/user/hive/warehouse/tables/accesos';
+
+CREATE EXTERNAL TABLE IF NOT EXISTS northwind_analytics.products_sent( 
+  order_id string,
+  shipped_date DATE,
+  company_name string,
+  phone string,
+  unit_price_discount float,
+  quantity int,
+  total_price float
+)
+LOCATION 'hdfs://etl:9000/user/hive/warehouse/tables/accesos';
 ```
 
 2) Crear un script para importar un archivo .parquet de la base northwind que contenga la lista de clientes junto a la cantidad de productos vendidos ordenados de mayor a menor (campos customer_id, company_name, productos_vendidos). Luego ingestar el archivo a HDFS (carpeta /sqoop/ingest/clientes). Pasar la password en un archivo
@@ -206,6 +223,14 @@ select c.customer_id, c.company_name, orders_joined.quantity from customers c in
 
 <img src="sql_query.png" />
 
+
+Creamos un archivo para persistir las credenciales de la db postgres
+```bash
+echo -n "edvai" > /home/hadoop/scripts/password_file.txt
+chmod 400 /home/hadoop/scripts/password_file.txt
+hdfs dfs -put ./password_file.txt /sqoop/
+```
+
 ```bash
 ## running ingest pipeline with scoop
 
@@ -213,8 +238,8 @@ sqoop import \
 --connect jdbc:postgresql://postgres/northwind \
 --username postgres \
 --m 1 \
---P \
---target-dir /sqoop/ingest \
+--password-file /sqoop/password_file.txt \
+--target-dir /sqoop/ingest/clientes \
 --as-parquetfile \
 --query "select c.customer_id, c.company_name, orders_joined.quantity 
             from customers as c inner join
@@ -228,12 +253,215 @@ sqoop import \
 
 3) Crear un script para importar un archivo .parquet de la base northwind que contenga la lista de órdenes junto a qué empresa realizó cada pedido (campos order_id, shipped_date, company_name, phone). Luego ingestar el archivo a HDFS (carpeta /sqoop/ingest/envíos). Pasar la password en un archivo
 
+SQL Query
+```sql
+select order_id, shipped_date, c.company_name, c.phone from orders as o
+	inner join customers as c on c.customer_id = o.customer_id;
+```
+
+```bash
+## running ingest pipeline with scoop
+
+sqoop import \
+--connect jdbc:postgresql://postgres/northwind \
+--username postgres \
+--m 1 \
+--password-file /sqoop/password_file.txt \
+--target-dir /sqoop/ingest/envios \
+--as-parquetfile \
+--query "select order_id, shipped_date, c.company_name, c.phone from orders as o
+	inner join customers as c on c.customer_id = o.customer_id where \$CONDITIONS;" \
+--delete-target-dir
+```
+
 4) Crear un script para importar un archivo .parquet de la base northwind que contenga la lista de detalles de órdenes (campos order_id, unit_price, quantity, discount). Luego ingestar el archivo a HDFS (carpeta /sqoop/ingest/order_details). Pasar la password en un archivo
+
+SQL Query
+```sql
+select order_id, unit_price, quantity, discount from order_details as od ;
+```
+
+```bash
+## running ingest pipeline with scoop
+
+sqoop import \
+--connect jdbc:postgresql://postgres/northwind \
+--username postgres \
+--m 1 \
+--password-file /sqoop/password_file.txt \
+--target-dir sqoop/ingest/order_details \
+--as-parquetfile \
+--query "select order_id, unit_price, quantity, discount from order_details as od where \$CONDITIONS;" \
+--delete-target-dir
+```
 
 5) Generar un archivo .py que permita mediante Spark insertar en hive en la db northwind_analytics en la tabla products_sold, los datos del punto 2, pero solamente aquellas compañías en las que la cantidad de productos vendidos fue mayor al
 promedio.
 
+**transformation_1.py**
+```python
+from pyspark.sql import HiveContext
+from pyspark.sql.types import DateType
+from pyspark.context import SparkContext
+from pyspark.sql.functions import col, avg
+from pyspark.sql.session import SparkSession
+
+
+
+sc = SparkContext('local')
+spark = SparkSession(sc)
+hc = HiveContext(sc)
+
+## leemos archivos parquet desde HDFS y se cargan en dataframes
+df = spark.read.parquet("hdfs://etl:9000/sqoop/ingest/clientes/")
+df = df.withColumn("quantity", col("quantity").cast("int"))
+avgQuantity = df.agg(avg("quantity")).first()[0]
+
+print(f'Average quantity is: {avgQuantity}')
+
+result = df.filter(col("quantity") > avgQuantity)
+
+result.show(5)
+
+## creamos una nueva vista filtrada
+result.createOrReplaceTempView("quantity")
+
+## insertamos el DF filtrado en la tabla tripdata_table2
+hc.sql("insert into northwind_analytics.products_sold select * from quantity;")
+```
+
+```bash
+/home/hadoop/spark/bin/spark-submit --files /home/hadoop/hive/conf/hive-site.xml /home/hadoop/scripts/transformation_1.py
+```
+
 6) Generar un archivo .py que permita mediante Spark insertar en hive en la tabla products_sent, los datos del punto 3 y 4, de manera tal que se vean las columnas order_id, shipped_date, company_name, phone, unit_price_discount (unit_price with discount), quantity, total_price (unit_price_discount * quantity). Solo de aquellos pedidos
 que hayan tenido descuento.
 
+**transformation_2.py**
+```python
+from pyspark.sql import HiveContext
+from pyspark.sql.functions import col
+from pyspark.sql.types import DateType
+from pyspark.context import SparkContext
+from pyspark.sql.session import SparkSession
+
+
+sc = SparkContext('local')
+spark = SparkSession(sc)
+hc = HiveContext(sc)
+
+## leemos archivos parquet desde HDFS y se cargan en dataframes
+envios = spark.read.parquet("hdfs://etl:9000/sqoop/ingest/envios")
+order_details = spark.read.parquet("hdfs://etl:9000/sqoop/ingest/order_details")
+
+joined_df = envios.join(order_details, envios.order_id == order_details.order_id)
+joined_df = joined_df.drop(order_details.order_id)
+joined_df = joined_df.withColumn("unit_price_discount", col("unit_price") - col("discount"))
+joined_df = joined_df.withColumn("total_price", col("unit_price_discount") * col("quantity"))
+
+joined_df.show(5)
+
+## creamos una vista del DF
+joined_df.createOrReplaceTempView("filter")
+
+new_df = spark.sql("select order_id, shipped_date, company_name, phone, unit_price_discount, quantity, total_price from filter where discount != 0")
+
+new_df.show(5)
+
+## creamos una nueva vista filtrada
+new_df.createOrReplaceTempView("filtered_final")
+
+## insertamos el DF filtrado en la tabla tripdata_table2
+hc.sql("insert into northwind_analytics.products_sent select * from filtered_final;")
+```
+
+```bash
+/home/hadoop/spark/bin/spark-submit --files /home/hadoop/hive/conf/hive-site.xml /home/hadoop/scripts/transformation_2.py
+```
+
+
 7) Realizar un proceso automático en Airflow que orqueste los pipelines creados en los puntos anteriores. Crear un grupo para la etapa de ingest y otro para la etapa de process. Correrlo y mostrar una captura de pantalla (del DAG y del resultado en la base de datos)
+
+**dag**
+```python
+
+from datetime import timedelta
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from airflow.operators.dummy import DummyOperator
+from airflow.utils.dates import days_ago
+from airflow.utils.task_group import TaskGroup
+
+
+args = {
+    'owner': 'airflow',
+}
+
+with DAG(
+    dag_id='etl_groups',
+    default_args=args,
+    schedule_interval=None,
+    start_date=days_ago(1),
+    dagrun_timeout=timedelta(minutes=60),
+    tags=['ingest', 'transform'],
+    params={"example_key": "example_value"},
+) as dag:
+
+
+    start = DummyOperator(
+        task_id='comienza_proceso',
+    )
+    
+    end = DummyOperator(
+        task_id='finaliza_proceso',
+    )
+
+    with TaskGroup("ingest_group") as ingest_group:
+        ingest_1 = BashOperator(
+            task_id='ingest_1',
+            bash_command="ssh -o StrictHostKeyChecking=no hadoop@etl 'bash /home/hadoop/scripts/ingest_1.sh'",
+        )
+        
+        ingest_2 = BashOperator(
+            task_id='ingest_2',
+            bash_command="ssh -o StrictHostKeyChecking=no hadoop@etl 'bash /home/hadoop/scripts/ingest_2.sh'",
+        )
+
+    with TaskGroup("process") as process_group:
+        process_1 = BashOperator(
+            task_id='processing_table_1',
+            bash_command='ssh -o StrictHostKeyChecking=no hadoop@etl /home/hadoop/spark/bin/spark-submit --files /home/hadoop/hive/conf/hive-site.xml /home/hadoop/scripts/transformation_1.py ',
+        )
+    
+        process_2 = BashOperator(
+            task_id='processing_table_2',
+            bash_command='ssh -o StrictHostKeyChecking=no hadoop@etl /home/hadoop/spark/bin/spark-submit --files /home/hadoop/hive/conf/hive-site.xml /home/hadoop/scripts/transformation_2.py ',
+        )
+    
+
+
+    start >> ingest_group >> process_group >> end
+
+
+
+
+if __name__ == "__main__":
+    dag.cli()
+```
+
+Se cambio el dag en 2 tareas de ingest:
+
+<img src="airflow_1.png" />
+
+<img src="airflow_2.png" />
+
+<img src="airflow_3.png" />
+
+<img src="airflow_4.png" />
+
+
+Resultados en tablas de hive:
+
+<img src="hive_2.png" />
+
+<img src="hive_1.png" />

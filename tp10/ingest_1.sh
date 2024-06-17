@@ -1,11 +1,11 @@
 ## running ingest pipeline with scoop
 
-sqoop import \
+/usr/lib/sqoop/bin/sqoop import \
 --connect jdbc:postgresql://postgres/northwind \
 --username postgres \
 --m 1 \
---P \
---target-dir /sqoop/ingest \
+--password-file /sqoop/password_file.txt \
+--target-dir /sqoop/ingest/clientes \
 --as-parquetfile \
 --query "select c.customer_id, c.company_name, orders_joined.quantity 
             from customers as c inner join
