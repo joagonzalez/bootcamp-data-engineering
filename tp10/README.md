@@ -1,9 +1,8 @@
-# Data Pipeline Orchestration: 
-Apache Airflow Spark and Hive
-
+# Mongo and Data Pipelines: 
+Using Mongo as database to compare data and data pipelines using scoop for ingestion.
 
 ### Infraestructura
-Se prepara un stack con docker-compose sobre docker swarm con un red interna para poder referenciar las conexiones entre containers utilizando el nombre de servicio en vez de IPs. El docker-compose utilizado se adjunta a continuación asi como el comando de deploy y servicios.
+Se prepara un stack con docker-compose sobre docker swarm con un red interna para poder referenciar las conexiones entre containers utilizando el nombre de servicio en vez de IPs. El docker-compose utilizado se adjunta a continuación asi como el comando de deploy y servicios. Se agrega un servicio con Mongo.
 
 ```bash
 ---
@@ -65,9 +64,19 @@ services:
       - NIFI_WEB_HTTP_HOST=0.0.0.0
       - NIFI_WEB_PROXY_CONTEXT_PATH=/
 
+  mongo:
+    image: mongo
+    networks:
+      - bootcamp
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-volume:/data/db
+
 volumes:
   postgres-db-volume: {}
   bucket-volume: {}
+  mongo-volume: {}
   
 networks:
   bootcamp:
@@ -79,221 +88,100 @@ docker stack deploy -c docker-compose.yml edv
 
 # docker service ls
 ID             NAME           MODE         REPLICAS   IMAGE                           PORTS
-ru993dyd8cs8   edv_etl        replicated   1/1        joagonzalez/edvai-etl:v6        *:8010->8010/tcp, *:8080->8080/tcp, *:8088->8088/tcp
-vied85rfpusz   edv_nifi       replicated   1/1        apache/nifi:latest              *:8443->8443/tcp
-1epql2usua91   edv_postgres   replicated   1/1        fedepineyro/edvai_postgres:v1   *:5432->5432/tcp
+qnr52xu7i60d   edv_etl        replicated   1/1        joagonzalez/edvai-etl:v6        *:8010->8010/tcp, *:8080->8080/tcp, *:8088->8088/tcp, *:9000->9000/tcp, *:9870->9870/tcp, *:10000->10000/tcp, *:10002->10002/tcp
+szubcwwedfs1   edv_mongo      replicated   1/1        mongo:latest                    *:27017->27017/tcp
+eq4os95hd4n6   edv_nifi       replicated   1/1        apache/nifi:latest              *:8443->8443/tcp
+fx4a2rjt8dz7   edv_postgres   replicated   1/1        fedepineyro/edvai_postgres:v1   *:5432->5432/tcp
+```
+
+### Mongo
+1) 2) Crear una base de datos llamada logs y una coleccion llamada users:
+
+<img src="mongo_collection.png" />
+
+
+3) Insertar colección de datos que se encuentra en https://github.com/fpineyro/homework-0/blob/master/Logs_May24.json
+
+<img src="mongo_data.png" />
+
+
+4) Hacer ingest del siguiente csv en el directorio HDFS /ingest https://raw.githubusercontent.com/fpineyro/homework-0/master/Logs_Abr24.csv
+
+```bash
+hadoop@9c4b311d47ba:~/landing$ wget https://raw.githubusercontent.com/fpineyro/homework-0/master/Logs_Abr24.csv
+hadoop@9c4b311d47ba:~/landing$ hdfs dfs -put ./Logs_Abr24.csv /ingest
+hadoop@9c4b311d47ba:~/landing$ hdfs dfs -ls /ingest
+
+Found 2 items
+-rw-r--r--   1 hadoop supergroup      62131 2024-06-16 18:34 /ingest/Logs_Abr24.csv
+-rw-r--r--   1 hadoop supergroup  125981363 2022-05-09 17:58 /ingest/yellow_tripdata_2021-01.csv
+```
+
+5) Realizar una comparación de los logs del mes de Abril de 2024 (CSV) y Mayo 2024
+(Mongo) para ver si hay personas que se conectaron desde la misma dirección IP.
+
+Primero inicializamos pyspark con conectores de mongo
+```bash
+pyspark --packages org.mongodb.spark:mongo-spark-connector_2.12:3.0.1
+```
+
+```python
+## leemos archivos source
+logs_users_mongo = spark.read.format("com.mongodb.spark.sql.DefaultSource") \
+    .option("uri", "mongodb://mongo/logs.users") \
+    .load()
+
+logs_users_csv = spark.read.option("header", "true").csv("hdfs://etl:9000/ingest/Logs_Abr24.csv")
+
+
+logs_users_mongo.show(5)
+logs_users_csv.show(5)
+
+logs_users_csv = logs_users_csv.withColumnRenamed("first_name", "first_name_csv") \
+                               .withColumnRenamed("last_name", "last_name_csv") \
+                               .withColumnRenamed("ip_address", "ip_address_csv") \
+                               .withColumnRenamed("id", "id_csv")
+
+logs_users_mongo = logs_users_mongo.join(logs_users_csv, logs_users_mongo["ip_address"] == logs_users_csv["ip_address_csv"], 'left')
+
+logs_users_mongo.show(5)
+
+logs_users_mongo.createOrReplaceTempView("vista_ip")
+
+df = spark.sql("""
+                   select id, first_name as first_name_may, last_name as last_name_may, first_name_csv as first_name_april, 
+                   last_name_csv as last_name_april, ip_address from vista_ip where ip_address_csv is not null
+                   """)
+
+
+df.show()
+
+spark = SparkSession.builder.enableHiveSupport().getOrCreate()
+df.write.mode('overwrite').saveAsTable('accesos.results')
 
 ```
 
-### Apache Hive
-1) Crear la siguientes tablas externas en la base de datos f1 en hive:
+<img src="pyspark_output.png" />
 
-- driver_results:
-  - driver_forename
-  - driver_surname
-  - driver_nationality
-  - points
 
-- constructor_results
-    - constructorRef
-    - cons_name
-    - cons_nationality
-    - url
-    - points
+6) Insertar en Hive: id, Apellido, email y dirección ip aquellos registros que contengan la
+misma dirección IP
 
 ```sql
-CREATE DATABASE f1;
+CREATE DATABASE accesos;
 
-CREATE EXTERNAL TABLE IF NOT EXISTS f1.driver_results( 
-  driver_forename string,
-  driver_surname string,
-  driver_nationality string,
-  points int
+CREATE EXTERNAL TABLE IF NOT EXISTS accesos.results( 
+  id int,
+  first_name_may string,
+  last_name_may string,
+  first_name_april string,
+  last_name_april string,
+  ip_address int
 )
-LOCATION 'hdfs://etl:9000/user/hive/warehouse/tables/f1';
-
-CREATE EXTERNAL TABLE IF NOT EXISTS f1.constructor_results( 
-  constructorRef string,
-  cons_name string,
-  cons_nationality string,
-  url string,
-  points int
-)
-LOCATION 'hdfs://etl:9000/user/hive/warehouse/tables/f1';
-```
-
-2) En Hive, mostrar el esquema de airport_trips
-
-<img src="constructor_results.png" />
-<img src="driver_results.png" />
-
-3) Crear un archivo .bash que permita descargar los archivos mencionados abajo e ingestarlos en HDFS.
-
-- results.csv: https://dataengineerpublic.blob.core.windows.net/data-engineer/f1/results.csv
-- drivers.csv: https://dataengineerpublic.blob.core.windows.net/data-engineer/f1/drivers.csv
-- constructors.csv: https://dataengineerpublic.blob.core.windows.net/data-engineer/f1/constructors.csv
-- races.csv: https://dataengineerpublic.blob.core.windows.net/data-engineer/f1/races.csv
-
-```bash
-## download f1 dataset @landing zone
-
-wget -nc -O /home/hadoop/landing/results.csv https://dataengineerpublic.blob.core.windows.net/data-engineer/f1/results.csv
-wget -nc -O /home/hadoop/landing/drivers.csv https://dataengineerpublic.blob.core.windows.net/data-engineer/f1/drivers.csv
-wget -nc -O /home/hadoop/landing/constructors.csv https://dataengineerpublic.blob.core.windows.net/data-engineer/f1/constructors.csv
-wget -nc -O /home/hadoop/landing/races.csv https://dataengineerpublic.blob.core.windows.net/data-engineer/f1/races.csv
-
-# ingest @hadoop
-/home/hadoop/hadoop/bin/hdfs dfs -put /home/hadoop/landing/results.csv /ingest
-/home/hadoop/hadoop/bin/hdfs dfs -put /home/hadoop/landing/races.csv /ingest
-/home/hadoop/hadoop/bin/hdfs dfs -put /home/hadoop/landing/drivers.csv /ingest
-/home/hadoop/hadoop/bin/hdfs dfs -put /home/hadoop/landing/constructors.csv /ingest
-
-# check
-/home/hadoop/hadoop/bin/hdfs  dfs -ls /ingest
+LOCATION 'hdfs://etl:9000/user/hive/warehouse/tables/accesos';
 
 ```
 
-4) Generar un archivo .py que permita, mediante Spark:
-  - insertar en la tabla driver_results los corredores con mayor cantidad de puntos en la historia.
-  - insertar en la tabla constructor_result quienes obtuvieron más puntos en el Spanish Grand Prix en el año 1991
+<img src="hive_output.png" />
 
-Adaptamos el script y trabajamos en **transformation.py**
-
-```python
-from pyspark.sql import HiveContext
-from pyspark.sql.types import DateType
-from pyspark.context import SparkContext
-from pyspark.sql.session import SparkSession
-
-
-
-sc = SparkContext('local')
-spark = SparkSession(sc)
-hc = HiveContext(sc)
-
-## leemos archivos parquet desde HDFS y se cargan en dataframes
-results = spark.read.option("header", "true").csv("hdfs://etl:9000/ingest/results.csv")
-drivers = spark.read.option("header", "true").csv("hdfs://etl:9000/ingest/drivers.csv")
-constructors = spark.read.option("header", "true").csv("hdfs://etl:9000/ingest/constructors.csv")
-races = spark.read.option("header", "true").csv("hdfs://etl:9000/ingest/races.csv")
-
-df_driver_results = results.join(drivers, results.driverId == drivers.driverId)
-df_constructor_results = constructors.join(results, constructors.constructorId == results.constructorId)
-races = races.drop('name', 'url')
-df_constructor_results = df_constructor_results.withColumnRenamed("name", "constructors_name"). \
-    join(races, df_constructor_results.raceId == races.raceId)
-
-df_driver_results = df_driver_results.select(
-    df_driver_results.forename.cast("string"), 
-    df_driver_results.surname.cast("string"), 
-    df_driver_results.nationality.cast("string"),
-    df_driver_results.points.cast("int"),
-    )
-
-df_constructor_results = df_constructor_results.select(
-    df_constructor_results.constructorRef.cast("string"), 
-    df_constructor_results.constructors_name.cast("string"), 
-    df_constructor_results.nationality.cast("string"),
-    df_constructor_results.url.cast("string"),
-    df_constructor_results.points.cast("int"),
-    df_constructor_results.year.cast("int"),
-    )
-
-
-df_driver_results.show(5)
-df_constructor_results.show(5)
-
-## creamos una vista del DF
-df_driver_results.createOrReplaceTempView("f1_driver_results_vista")
-df_constructor_results.createOrReplaceTempView("f1_driver_constructors_vista")
-
-## filtramos el DF quedandonos solamente con aquellos viejes que tienen airport_fee y el pago fue con efectivo
-new_df = spark.sql("""
-                   select forename as driver_forename, surname as driver_surname, nationality as driver_nationality, sum(points) as points
-                   from f1_driver_results_vista
-                   group by forename, surname, nationality
-                   ORDER BY points DESC
-                   """)
-
-new_df_constructors = spark.sql("""
-                   select constructorRef as constructorRef, constructors_name as cons_name, nationality as cons_nationality, url, sum(points) as points
-                   from f1_driver_constructors_vista
-                   GROUP BY constructorRef, cons_name, cons_nationality, url
-                   ORDER BY points DESC
-                   LIMIT 5
-                   """)
-
-new_df.show(20)
-new_df_constructors.show(20)
-
-## creamos una nueva vista filtrada
-new_df.createOrReplaceTempView("f1_driver_results_vista_filtrada")
-new_df_constructors.createOrReplaceTempView("f1_driver_results_constructors_vista_filtrada")
-
-
-hc.sql("insert into f1.driver_results select * from f1_driver_results_vista_filtrada;")
-hc.sql("insert into f1.constructor_results select * from f1_driver_results_constructors_vista_filtrada;")
-```
-
-```bash
-/home/hadoop/spark/bin/spark-submit --files /home/hadoop/hive/conf/hive-site.xml /home/hadoop/scripts/transformation.py
-```
-
-
-5) Realizar un proceso automático en Airflow que orqueste los archivos creados en los puntos 3 y 4. Correrlo y mostrar una captura de pantalla (del DAG y del resultado en la base de datos)
-
-```python
-from datetime import timedelta
-from airflow import DAG
-from airflow.operators.bash import BashOperator
-from airflow.operators.dummy import DummyOperator
-from airflow.utils.dates import days_ago
-
-args = {
-    'owner': 'airflow',
-}
-
-with DAG(
-    dag_id='etl',
-    default_args=args,
-    schedule_interval='0 0 * * *',
-    start_date=days_ago(2),
-    dagrun_timeout=timedelta(minutes=60),
-    tags=['ingest', 'transform'],
-    params={"example_key": "example_value"},
-) as dag:
-
-
-    start = DummyOperator(
-        task_id='Start_Pipeline',
-    )
-    
-    end = DummyOperator(
-        task_id='End_Pipeline',
-    )
-
-
-    ingest = BashOperator(
-        task_id='ingest',
-        bash_command="ssh -o StrictHostKeyChecking=no hadoop@etl 'bash /home/hadoop/scripts/ingest.sh'",
-    )
-
-
-    transform = BashOperator(
-        task_id='transform',
-        bash_command='ssh -o StrictHostKeyChecking=no hadoop@etl /home/hadoop/spark/bin/spark-submit --files /home/hadoop/hive/conf/hive-site.xml /home/hadoop/scripts/transformation.py ',
-    )
-
-
-    start >> ingest >> transform >> end
-```
-
-<img src="dag.png" />
-
-<img src="ingest_task_logs.png" />
-
-<img src="transform_task_logs.png" />
-
-<img src="constructors_results_hive.png" />
-
-<img src="driver_results_hive.png" />
+<img src="hive_describe.png" />

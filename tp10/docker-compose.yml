@@ -69,6 +69,7 @@ services:
 volumes:
   postgres-db-volume: {}
   bucket-volume: {}
+  mongo-volume: {}
   
 networks:
   bootcamp:
