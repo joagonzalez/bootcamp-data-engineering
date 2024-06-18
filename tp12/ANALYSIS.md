@@ -11,6 +11,22 @@ Choosing between Google Cloud Dataflow and Google Cloud Dataproc depends on your
 
 4. **Complex Windowing and Time-based Aggregations**: If your use case involves complex event-time based windowing (such as sliding windows, session windows), Dataflow has strong support for this.
 
+Example of Dataflow Job in GCP
+
+```bash
+python dataflow_python_examples/data_ingestion.py \
+  --project=$PROJECT --region=us-east1 \
+  --runner=DataflowRunner \
+  --machine_type=e2-standard-2 \
+  --staging_location=gs://$PROJECT/test \
+  --temp_location gs://$PROJECT/test \
+  --input gs://$PROJECT/data_files/head_usa_names.csv \
+  --save_main_session
+```
+
+<img src="analysis_dataflow.png" />
+
+
 **Use Dataproc when:**
 
 1. **Existing Hadoop/Spark Workloads**: If you have existing Apache Hadoop or Apache Spark workloads, Dataproc allows you to move them to the cloud with minimal changes.
