@@ -382,3 +382,17 @@ if __name__ == "__main__":
         <img src="img/meta_7.png"   height='60%' width='60%' />
 
         <img src="img/meta_8.png"   height='40%' width='40%' />
+
+6) Elabore sus conclusiones y recomendaciones sobre este proyecto.
+
+Hay gran potencial en los datasets utilizados, pero no se estan explotando los datos georeferenciales. Esto sería una gran mejora ya que muchos de los cortes de información estan orientados a estos/ubicaciones de los alquileres  y poder tener una visualización en mapa ayudaria muchisimo al análisis.
+
+Es interesante el hecho de poder utilizar estos datos para generar politicas que mejores la adopción de vehiculos que utilicen energías mas eficientes. Por ejemplo, se ve que 3 modelos de tesla estan en la cabeza del top 10 de modelos más alquilados.
+
+Además, los alquileres entre los años 2010 y 2015 fueron siempre creciendo lo cual hace mas evidente la necesidad de generación de estas políticas.
+
+Por ultimo, tanto por la cantidad de reviews (concentradas en su mayoría en autos a gasolina) como en ciudades con mayor cantidad de alquileres de vehiculos ecologicos (donde realmente es muy poco en valores relativos) se observa un gran potencial a explotar en la adopción de vehiculos energeticamente eficientes.
+
+7) Se presenta la siguiente arquitectura cloud. En este caso, para variar la solución de procesamiento de datos, se utiliza Composer como orquestador pero DataProc (apache+hadoop en GCP) para las tareas puntuales de procesamiento y transformación de datos. Al ser todo batch, no hay necesidad de contemplar alternativas de streaming de datos. BigQuery toma el lugar de datawarehouse (Apache Hive en este proyecto) y se usa un repositorio de almacenamiento Cloud Storage para siempre dejar los datos crudos en caso de que sean necesarios para otras tareas en el futuro. Como herramientas de analisis y business intelligence se pueden utilizar Looker (nativo GCP) o Metabase On Premise conectado a BigQuery. En el contexto de este proyecto se utilizo una instancia local dockerizada de metabase para la generación de visualizaciones.
+
+<img src="img/proyecto_final_ej2.png" />
