@@ -29,25 +29,24 @@ with DAG(
     end = DummyOperator(
         task_id='finaliza_proceso',
     )
-
-    # with TaskGroup("etl") as etl_group:
-    #     process = BashOperator(
-    #         task_id='process',
-    #         bash_command='ssh -o StrictHostKeyChecking=no hadoop@etl /home/hadoop/spark/bin/spark-submit --files /home/hadoop/hive/conf/hive-site.xml /home/hadoop/scripts/transformation.py ',
-    #     )
     
     ingest = BashOperator(
         task_id='ingest',
         bash_command="ssh -o StrictHostKeyChecking=no hadoop@etl 'bash /home/hadoop/scripts/ingest.sh'",
     )
-
-
-    transform = BashOperator(
-        task_id='transform',
-        bash_command='ssh -o StrictHostKeyChecking=no hadoop@etl /home/hadoop/spark/bin/spark-submit --files /home/hadoop/hive/conf/hive-site.xml /home/hadoop/scripts/transformation.py',
-    )
     
-    start >> ingest >> transform >> end
+    with TaskGroup("transform_load") as transform_load:
+        transform_1 = BashOperator(
+            task_id='transform_vuelos',
+            bash_command='ssh -o StrictHostKeyChecking=no hadoop@etl /home/hadoop/spark/bin/spark-submit --files /home/hadoop/hive/conf/hive-site.xml /home/hadoop/scripts/transformation_1.py',
+        )
+
+        transform_2 = BashOperator(
+            task_id='transform_aeropuertos',
+            bash_command='ssh -o StrictHostKeyChecking=no hadoop@etl /home/hadoop/spark/bin/spark-submit --files /home/hadoop/hive/conf/hive-site.xml /home/hadoop/scripts/transformation_2.py',
+        )
+    
+    start >> ingest >> transform_load >> end
 
 
 

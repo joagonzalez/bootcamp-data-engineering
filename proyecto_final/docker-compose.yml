@@ -26,8 +26,9 @@ services:
       - ./core-site.xml:/home/hadoop/hadoop/etc/hadoop/core-site.xml
       - ./start-services.sh:/home/hadoop/scripts/start-services.sh
       - ./ingest.sh:/home/hadoop/scripts/ingest.sh:rw
-      - ./transformation.py:/home/hadoop/scripts/transformation.py:rw
-      - ./etl_dag_groups.py:/home/hadoop/airflow/dags/etl_dag_groups.py:rw
+      - ./transformation_1.py:/home/hadoop/scripts/transformation_1.py:rw
+      - ./transformation_2.py:/home/hadoop/scripts/transformation_2.py:rw
+      - ./etl_dag.py:/home/hadoop/airflow/dags/etl_dag.py:rw
     ports:
       - 8010:8010 # airflow
       - 8088:8088 # hadoop infra UI
