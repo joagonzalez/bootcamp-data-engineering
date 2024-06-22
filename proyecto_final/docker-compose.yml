@@ -26,9 +26,13 @@ services:
       - ./core-site.xml:/home/hadoop/hadoop/etc/hadoop/core-site.xml
       - ./start-services.sh:/home/hadoop/scripts/start-services.sh
       - ./ingest.sh:/home/hadoop/scripts/ingest.sh:rw
+      - ./ingest_automoviles.sh:/home/hadoop/scripts/ingest_automoviles.sh:rw
       - ./transformation_1.py:/home/hadoop/scripts/transformation_1.py:rw
       - ./transformation_2.py:/home/hadoop/scripts/transformation_2.py:rw
+      - ./transformation_automoviles.py:/home/hadoop/scripts/transformation_automoviles.py:rw
       - ./etl_dag.py:/home/hadoop/airflow/dags/etl_dag.py:rw
+      - ./etl_dag_automoviles_padre.py:/home/hadoop/airflow/dags/etl_dag_automoviles_padre.py:rw
+      - ./etl_dag_automoviles_hijo.py:/home/hadoop/airflow/dags/etl_dag_automoviles_hijo.py:rw
     ports:
       - 8010:8010 # airflow
       - 8088:8088 # hadoop infra UI
@@ -65,6 +69,38 @@ services:
       - 27017:27017
     volumes:
       - mongo-volume:/data/db
+
+  metabase:
+    image: metabase/metabase:latest
+    hostname: metabase
+    volumes:
+    - /dev/urandom:/dev/random:ro
+    ports:
+      - 3000:3000
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabaseappdb
+      MB_DB_PORT: 5432
+      MB_DB_USER: metabase
+      MB_DB_PASS: mysecretpassword
+      MB_DB_HOST: postgres_metabase
+    networks:
+      - bootcamp
+    healthcheck:
+      test: curl --fail -I http://metabase:3000/api/health || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  postgres_metabase:
+    image: postgres:latest
+    hostname: postgres
+    environment:
+      POSTGRES_USER: metabase
+      POSTGRES_DB: metabaseappdb
+      POSTGRES_PASSWORD: mysecretpassword
+    networks:
+      - bootcamp
 
 volumes:
   postgres-db-volume: {}
