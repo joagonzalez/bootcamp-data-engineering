@@ -398,7 +398,51 @@ SELECT
 <img src="img/5.png" />
 
 11. Qué datos externos agregaría en este dataset que mejoraría el análisis de los datos
+Tener información de pasajeros daria mucho valor a cualquier tipo de análisis, ya sea de demanda, para detectar servicios mas utilizados, etc.
+
+Por ejemplo:
+
+- Tipo de boleto que compran pasajeros del vuelo: Economica, Business, Primera
+- Cuantas veces en el año el pasajero tomo el vuelo
+- Cuanto pago por el pasaje cada pasajero
+
+De esta manera, y teniendo la fecha de los vuelos, se pueden detectar demandas estacionales, por promociones, dividir viajes por trabajo o por turismo, detectar cuantos de los vuelos son de pasajeros frecuentes y entender conexiones por eventos/proyectos entre dos puntos, etc.
+
+Tambien sería interesante tener una tabla con eventos publicos relevantes asociadas a ciudades de origen/destino para asociar picos de demanda a estos hechos particulares y diferenciar cuanto de los viajes son por estacionalidad y cuantos por hechos puntuales y cuales podria ser esos hechos.
+
+Tambien sería interesante tener una tabla con mayor información de cada modelo de aeronave, para entender la antiguedad promedio de la flota, si es necesario hacer recambios en base a politicas de la Administración Nacional de Aviación Civil.
+
+Por ejemplo:
+
+- Fecha del modelo
+- Fecha desde el ultimo service
+- Cantidad de kms recorridos
+
+Tambien sería importante entender el destino final de los pasajeros, en caso de que no sea la ciudad de destino y tengan que movilizarse a otra. Esto daria un insight interesante para saber si es necesario abrir aeropuertos en nuevas ciudades.
 
 12. Elabore sus conclusiones y recomendaciones sobre este proyecto.
 
+El análisis de estos dataset permite extraer patrones y dinamicas sobre el uso del sistema de transporte aereo argentino. 
+
+Se puede ver como la aerolínea de bandera Aerolineas Argentinas SA tiene el mayor volumen de transporte, siendo 7 veces mayor a la segunda en la lista.  
+
+Tambien se puede ver la aeronave mas utilizada EMB-... 
+
+Como se dispuso en el punto 11, es interesante ver esta información ya que permite entender la demanda de los aeropuertos y analizar si es necesario realizar obras para aumentar capacidad o incluso entender si es necesario abrir nuevos en algunos destinos.
+
+Tambien permite observar si hay vinculos particuales entre distintas provincias ya sean de turismo o actividades comerciales.
+
+Por ultimo, poder entender el estado de la flota en base a su utilización.
+
+
+En términos de recomendaciones, dada la alta demanda que tiene la aerolinea de bandera, entender que tipo de politica podria implementarse para incentivar una distribución más equitativa de los vuelos para hacer al sistema aereo mas resiliente y menos dependiente de una sola marca.
+
+Prestar atención y elaborar una politica de recambio para el modelo de aeronave EMB-... es estratégico ya que es la más ultizada en todo el páis. Negociar una estrategica de recambio que garantice la ausencia de interrupciones y precios competitivos es esencial. 
+
 13. Proponer una arquitectura alternativa para este proceso ya sea con herramientas on premise o cloud (Sí aplica)
+
+Utilizando herramientas cloud se podría utilizar una arquitectura como la del siguiente diagrama.
+
+<img src="img/proyecto_final_ej1.png" />
+
+Utilizar buckets Cloud Storage para almazenar la data cruda, utilizar Composer para el workflow de ingesta y Dataflow para el procesamiento y carga en BigQuery tambien orquestado en otra tarea de Composer utilizando, por ejemplo, https://cloud.google.com/dataflow/docs/guides/templates/provided/cloud-storage-to-bigquery. Utilizar un datalake house para que la data pueda consumirse para hacer reportes o entrenar modelos en el futuro. Para visualizaciones se puede utilizar Looker.
