@@ -1,5 +1,7 @@
 # Final: Ejercicio 2 Alquiler de automóviles
 
+- [Principal](./README.md)
+
 ### Problema
 Una de las empresas líderes en alquileres de automóviles solicita una serie de dashboards y reportes para poder basar sus decisiones en datos. Entre los indicadores mencionados se encuentran total de alquileres, segmentación por tipo de combustible, lugar, marca y modelo de automóvil, valoración de cada alquiler, etc.
 
