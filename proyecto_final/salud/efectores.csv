@@ -1,0 +1,263 @@
+id;Label;Institucion;Localidad;Partido;Provincia;Region Sanitaria;Ubicacion_relacional;Nivel de atencion;Gestion;jurisdiccion;x;y
+1;HEC;Hospital El Cruce Dr. Nestro Kirchner Alta Complejidad en Red;Florencio Varela;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;3;publica;SAMIC;-58.26910716;-34.77174475
+2;H. Mi Pueblo;Hospital Zonal General de Agudos Mi Pueblo;;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;2;publica;provincial;-58.2717299;-34.81947471
+3;H. Evita Pueblo;HOSPITAL ZONAL GENERAL AGUDOS DESCENTRALIZADO EVITA PUEBLO;;Berazategui;Buenos Aires;VI;Subregion Sudeste;2;publica;provincial;-58.21190245;-34.78131006
+4;H. Dr. Iriarte;Hospital Zonal General de Agudos Dr. Isidoro Iriarte;;Quilmes;Buenos Aires;VI;Subregion Sudeste;2;publica;provincial;-58.2469147;-34.72042827
+5;H.Dr. Oller;Hospital Subzonal Especializado Materno Infantil Dr. Oller;Solano;Quilmes;Buenos Aires;VI;Subregion Sudeste;2;publica;municipal;-58.30737352;-34.77738455
+6;H. Dr. Melendez;HOSPITAL ZONAL GENERAL AGUDOS DR. LUCIO V. MELENDEZ;;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;2;publica;provincial;-58.38587787;-34.81221967
+7;H. Rehab. Dr. Jorge;HOSPITAL SUBZONAL ESPECIALIZADO EN REHABILITACION DR. JORGE;Almirante Brown;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;2;publica;provincial;-58.38595532;-34.8115208
+8;H. Dr. Onativia;Hospital Zonal General de Agudos Dr. Arturo Onativia;;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;2;publica;provincial;-58.35122118;-34.78479706
+9;H. Dr.Gandulfo (L. Zamora);HOSPITAL INTERZONAL GENERAL DE AGUDOS LUISA C. GANDULFO;Lomas de Zamora;Lomas de Zamora;Buenos Aires;VI;RS VI;2;publica;provincial;-58.39283368;-34.76175636
+10;H. Dr. N. Lopez;HOSPITAL ZONAL GENERAL DE AGUDOS DR. NARCISO LOPEZ;;Lanus;Buenos Aires;VI;RS VI;2;publica;provincial;-58.38259687;-34.70389081
+11;H. Dr. Fiorito;Hospital Interzonal General Agudos Dr. Pedro Fiorito;;Avellaneda;Buenos Aires;VI;RS VI;2;publica;provincial;-58.36516056;-34.66639975
+12;H. Eurnekian;"	HOSPITAL ZONAL GENERAL DE AGUDOS EURNEKIAN (EX MADRE TERESA DE CALCUTA)";Ezeiza;Ezeiza;Buenos Aires;VI;RS VI;2;publica;provincial;-58.5345482;-34.86561317
+13;CAPS San Jorge (FV);CAPS San Jorge;San Jorge;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.2920702;-34.81491952
+14;CAPS Vatteone (FV);CAPS Villa Vatteone;Gobernador Costa;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.27348404;-34.81720754
+15;H. Ntra. Sra. De Lujan;HOSPITAL ZONAL MUNICIPAL NUESTRA SE�ORA DE LUJAN;Lujan;Lujan;Buenos Aires;VII;PBA;2;publica;municipal;-59.09696787;-34.5710601
+16;H. S.T. Santamarina;Hospital Municipal Sofia Terrero Santamarina;;Esteban Echeverria;Buenos Aires;VI;RS VI;2;publica;municipal;-58.45962259;-34.81383305
+17;H. M. Belgrano;HOSPITAL ZONAL GENERAL AGUDOS MANUEL BELGRANO;San Martin;General San Martin;Buenos Aires;V;PBA;2;publica;provincial;-58.52496096;-34.54959692
+18;S. Franchini (O.S.);Sanatorio Franchin (Obra Social Construir Salud);CABA;CABA;CABA;;Otro;2;privada;privada;-58.41639908602655;-34.609448075953004
+19;H. de Ninos Ludovica (La Plata);HOSPITAL ZONAL DE AGUDOS ESPECIALIZADO EN PEDIATRIA SOR MARIA LUDOVICA;La Plata;La Plata;Buenos Aires;XI;PBA;3;publica;provincial;-57.94326127;-34.9316088
+20;H. Evita (Lanus);Hospital Interzonal General Agudos Evita;Lanus;Lanus;Buenos Aires;VI;RS VI;2;publica;provincial;-58.40071339;-34.69623679
+21;H. Equiza (La Matanza);Hospital Materno Infantil Dr. Jose Equiza;;La Matanza;Buenos Aires;XII;PBA;2;publica;municipal;-58.6480078;-34.76993893
+22;H. San Felipe (San Nicolas);HOSPITAL ZONAL GENERAL AGUDOS SAN FELIPE DE SAN NICOLAS;San Nicolas;San Nicolas;Buenos Aires;IV;PBA;2;publica;provincial;-60.2227427;-33.33596373
+23;H. Quiroga (San Juan);HOSPITAL DR. MARCIAL V. QUIROGA;Rivadavia;Rivadavia;San Juan;;Otro;3;publica;provincial;-68.59570117635855;-31.53000040503472
+24;H.Malvinas (Merlo);Hospital Zonal General de Agudos Heroes de Malvinas;Merlo;Merlo;Buenos Aires;VII;PBA;2;publica;provincial;-58.7432323;-34.66938943
+25;H. San Luis (Bragado);HOSPITAL MUNICIPAL SAN LUIS - Bragado;Bragado;Bragado;Buenos Aires;X;PBA;2;publica;municipal;-60.50524859;-35.12003316
+26;H. Erill (Escobar);HOSPITAL ZONAL GENERAL AGUDOS DR. ERILL;Escobar;Escobar;Buenos Aires;V;PBA;2;publica;provincial;-58.79083554;-34.34343912
+27;H. Martinez (Tigre);HOSPITAL ZONAL GRAL. DE AGUDOS MAGDALENA V. DE MARTINEZ;General Pacheco;Tigre;Buenos Aires;V;PBA;2;publica;provincial;-58.63896367;-34.45697922
+28;H. Wilde (Avellaneda);HOSPITAL MUNICIPAL DE AVELLANEDA DR. EDUARDO WILDE;Wilde;Avellaneda;Buenos Aires;VI;RS VI;2;publica;provincial;-58.31704867;-34.69556123
+29;Clinica del Nino (Q);Clinica Privada del Nino Quilmes;;Quilmes;Buenos Aires;VI;Subregion Sudeste;2;privada;privada;-58.272459197336204;-34.71584495951317
+30;H. Mercante (Jose C. Paz);HOSPITAL ZONAL GENERAL DE AGUDOS GOBERNADOR DOMINGO MERCANTE;Jose C. Paz;Jose C. Paz;Buenos Aires;V;PBA;2;publica;provincial;-58.74066893;-34.51658091
+31;H. Alende (L. Zamora);HOSPITAL MATERNO INFANTIL DR. OSCAR E. ALENDE;;Lomas de Zamora;Buenos Aires;VI;RS VI;2;publica;municipal;-58.4668767;-34.71525666
+32;Fresnius Care (FVarela);FRESENIUS Medial Care;Florencio Varela;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;Dialisis;privada;privada;-58.272199883749096;-34.81502016762506
+33;I. M. Medicina (La Plata);Instituto Central de Medicina ;La Plata;La Plata;Buenos Aires;I ;PBA;2;privada;privada;-57.95588614438857;-34.90931264670636
+34;CAPS Dr. Sabato (B);CAPS  01 Dr. Sabato (Berazategui);Berazategui;Berazategui;Buenos Aires;VI;Subregion Sudeste;2;publica;municipal;-58.22667977;-34.7709986
+35;H. Eva Peron (Santa Fe);HOSPITAL ESCUELA EVA PERON (Granadero Baigorria);Granadero Baigorria;Granadero Baigorria;Santa Fe;;Otro;2;publica;provincial;-60.70417525094239;-32.85627466681544
+36;CAPS Malvinas Argentinas (FV);CAPS MALVINAS ARGENTINA (F. Varela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.32618153;-34.80772539
+37;Clinica Independencia (9 de Julio);Clinica Privada Independencia;9 de Julio;9 de Julio;Buenos Aires;II;PBA;2;privada;privada;-60.88291348524495;-35.44202496783554
+38;H. de Ninos Alassia (Santa Fe);Hospital de Ninos Dr. Orlando Alassia (Santa Fe);Santa Fe;Santa Fe;Santa Fe;;Otro;2;publica;provincial;-60.727185117974194;-31.644325171178313
+39;H. Argerich (CABA);HOSPITAL GENERAL DE AGUDOS DR. COSME ARGERICH;CABA;CABA;CABA;;Otro;3;publica;municipal;-58.36484079379731;-34.628034764775215
+40;H. Garrahan (CABA);HOSPITAL DE PEDIATRIA DR. JUAN P. GARRAHAN;CABA;CABA;CABA;;Otro;3;publica;nacional;-58.39074092875143;-34.630156328748605
+41;H. Pte. Peron (Avellaneda);HOSPITAL INTERZONAL GENERAL DE AGUDOS PRESIDENTE PERON;Avellaneda;Avellaneda;Buenos Aires;VI;RS VI;2;publica;provincial;-58.3575562;-34.68157896
+42;H. de Ninos Elizalde (ex Casa Cuna);HOSPITAL GENERAL DE NINOS PEDRO DE ELIZALDE (Ex Casa Cuna);CABA;CABA;CABA;;Otro;3;publica;municipal;-58.37818504324536;-34.62822968335936
+43;CIC Pte. Avellaneda (FV);CIC PTE. AVELLANEDA;;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.20928294;-34.81685972
+44;H. de Clinicas (CABA) ;Hospital de Clinicas Jose de San Martin;CABA;CABA;CABA;;Otro;3;publica;nacional;-58.40005923892531;-34.599350818459584
+45;H. Pineyro (Junin);HOSPITAL ZONAL GENERAL AGUDOS ABRAHAM PINEYRO;Junin;Junin;Buenos Aires;III;PBA;2;publica;provincial;-60.95866876;-34.58095496
+46;H. de Esquel (Chubut);HOSPITAL ZONAL ESQUEL;Esquel;Futaleufu;Chubut;;Otro;2;publica;provincial;-71.31508995766393;-42.91786122258369
+47;H. de la Madre y el Nino (Formosa);Hospital de La Madre y El Nino ;Resistencia;Formosa;Formosa;;Otro;3;publica;provincial;-58.17444548365083;-26.192876878445038
+48;CAPS Esmeralda (FV);CAPS La Esmeralda;;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.28468929;-34.8210868
+49;H. Pediatrico Barreyro (Posadas);HOSPITAL PUBLICO PROVINCIAL DE AUTOGESTION NIVEL III DR. FERNANDO BARREYRO;Posadas;Posadas;Misiones;;Otro;2;publica;provincial;-55.890140778038074;-27.38288964197051
+50;CAPS La Sarita (Quilmes);CAPS La Sarita (Quilmes);;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.31521379;-34.7404712
+51;H. Penna (B.Blanca);HOSPITAL INTERZONAL GENERAL DE AGUDOS DR. JOSE PENNA ;Bahia Blanca;Bahia Blanca;Buenos Aires;I;PBA;2;publica;provincial;-62.22845701;-38.72929944
+52;H. Italiano (La Plata);HOSPITAL ITALIANO DE LA PLATA;La Plata;La Plata;Buenos Aires;XI;PBA;3;privada;privada;-57.97177157919828;-34.93619472651975
+53;Policlinico Peron (V.Mercedes);Policlinica Regional Juan D. Peron;Villa Mercedes;Villa Mercedes;San Luis;;Otro;2;publica;provincial;-65.4525005305897;-33.67585304893122
+54;CAPS La Gloria (AB);CAPS 11 La Gloria (A.Brown);;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.33388235;-34.76620785
+55;CAPS 13 de Julio (AB);CAPS 13 de Julio (A.Brown);;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.31743062;-34.78911895
+56;CAPS 2 de Abril (AB);CAPS 25 2 de Abril (A.Brown);;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.33313029;-34.77652642
+57;Secre. Salud (AB);Secretaria de Salud (Alte. Brown) ;;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;0;publica;municipal;-58.38689696;-34.81859286
+58;CAPS 28 de Diciembre (AB);CAPS 10 28 de Diciembre (A.Brown);;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.33627354;-34.77429505
+59;CAPS Los Pinos (AB);CAPS 30 Los Pinos (A.Brown);;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.36730253;-34.85282755
+60;CAPS Burzaco (AB);CAPS 13 Burzaco (A. Brown);;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.37169502;-34.81859286
+61;USAM (AB);UNIDAD DE SALUD AMBIENTAL (Alte. Brown) ;;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.41292369;-34.82405084
+62;CAPS Sakura (AB);CAPS Sakura (A. Brown);;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.39233291;-34.84565631
+63;CAPS Floreal Ferrara (AB);CAPS 9 Floreal Ferrara (A.Brown);;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.41061512;-34.82701368
+64;CPAS Don Orione (AB);CAPS Don Orione (A.Brown);Clypole;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.34741593;-34.81904667
+65;CAPS Ministro Rivadavia (AB);CAPS 01 M. Rivadavia (A.Brown);;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.36887142;-34.84123653
+66;CAPS Mi Horizonte (AB);CAPS 02 Mi Horizonte (A.Brown);;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.32470184;-34.79420678
+67;H. Fernandez (CABA);Hospital General de Agudos Dr. Juan A. Fernandez;CABA;CABA;CABA;;Otro;3;publica;municipal;-58.408105211134504;-34.58124182126513
+68;H. Ramos (C. Casares);HOSPITAL MUNICIPAL DR. JULIO RAMOS (Carlos Casares);Carlos Casares;Carlos Casares;Buenos Aires;II;PBA;2;publica;municipal;-61.36408737;-35.63633435
+69;CAPS Zeballos I (FV);CAPS Zeballos I Dr. Ramon Carrillo (F. Varela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.25179396;-34.81761852
+70;CAPS 12 Bustillo (B);CAPS 12 Bustillo ;;Berazategui;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.1720423;-34.79749116
+71;H. R. Gutierrez (CABA);HOSPITAL GENERAL DE NINOS DR. RICARDO GUTIERREZ;CABA;CABA;CABA;;Otro;3;publica;municipal;-58.41139789002345;-34.59484987646551
+72;CAPS 2 de Abril (Q);CAPS 2 de Abril (Quilmes);;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.25444303;-34.76302546
+73;CAPS Maria Eva (Q);CAPS Maria Eva ;;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.32262518;-34.72351095
+74;Julio Mendez (Q);CENTRO INTEGRAL DE SALUD. DIAGNOSTICO Y REHABILITACION JULIO MENDEZ;;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.28500158;-34.71335752
+75;CAPS Dr. A. Illia (Q);CAPS Dr. A. Illia;;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.25020107;-34.75654931
+76;CAPS 8 de Octubre I (Q) ;CAPS 8 de Octubre I (Quilmes) ;;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.3116961;-34.76730292
+77;CAPS Villa Itati II (Q);CAPS Villa Itati II (Quilmes);;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.30453221;-34.70903621
+78;CAPS La Vera (Q);CAPS La Vera (Quilmes);;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.27821027;-34.74899202
+79;CIC La Paz (Q);CIC La Paz ;;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.32186364;-34.75090819
+80;CAPS Eva Peron (Q);CAPS Eva Peron ;;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.26527219;-34.74215387
+81;CAPS La Matera (Q);CAPS La Matera ;;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.31718966;-34.75872615
+82;Centro Don Bosco (Q);Centro Asistencial Modelo Don Bosco (Quilmes) ;;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.29728495;-34.70426683
+83;CAPS Islas Malvinas (Q);CAPS Islas Malvinas (Quilmes);;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.29121252;-34.77433405
+84;CAPS La Florida (Q);CAPS La Florida ;;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.30049715;-34.76376571
+85;Secret. de Salud (Q);Secretaria de Salud;;Quilmes;Buenos Aires;VI;Subregion Sudeste;0;publica;municipal;-58.28490055824865;-34.713395453577775
+86;Dispensario Municipal (Q);Dispensario Municipal;;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.26988657643311;-34.72667210983289
+87;Escuela 43 (Q);Escuela 43 (Quilmes);;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.30013628458053;-34.764455870228765
+88;Secret. de Salud (B);Secretaria de Salud ;;Berazategui;Buenos Aires;VI;Subregion Sudeste;0;publica;municipal;-58.22747873;-34.77164099
+89;Maternidad Las Mercedes (Tucuman);Instituto de Maternidad y Ginecologia Nuestra Senora de Las Mercedes;San Miguel;Tucuman;Tucuman;;Otro;3;publica;provincial;-65.22038832039158;-26.826961935342958
+90;CAPS 26 Barrio San Jose (B);CAPS 26 Barrio San Jose;San Jose;Berazategui;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.24861917;-34.76875978
+91;H. Dr. A. Posadas (Moron);HOSPITAL NACIONAL PROFESOR DR. ALEJANDRO POSADAS;Moron;Moron;Buenos Aires;VII;PBA;2;publica;nacional;-58.57524343;-34.63016525
+92;H. de Chivilcoy;Hospital Municipal de Chivilcoy;Chivilcoy;Chivilcoy;Buenos Aires;X;PBA;2;publica;municipal;-60.03611696;-34.91175232
+93;H. DAgnillo (Marcos Paz);HOSPITAL MUNICIPAL DR. HECTOR J. D AGNILLO;;Marcos Paz;Buenos Aires;XI;PBA;2;publica;municipal;-58.83294489;-34.78564038
+94;H. V. Tagarelli (Mendoza);Hospital Victorino Tagarelli;;San Carlos;Mendoza;;Otro;2;publica;provincial;-69.05703569689719;-33.773255480771105
+95;Sanatorio Guemes (CABA);Sanatorio Guemes;CABA;CABA;CABA;;Otro;3;privada;privada;-58.42152411833594;-34.59677035341777
+96;US 11 El Pato (B);US 11 El Pato (Berazategui);El Pato;Berazategui;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.17305538;-34.87737449
+97;H. Dr. Abete (Malv. Argent.);HOSPITAL MUNICIPAL DE TRAUMA Y EMERGENCIAS DR. FEDERICO ALBERTO ABETE;Pablo Nogues;Malvinas Argentinas;Buenos Aires;V;PBA;2;publica;municipal;-58.73377904;-34.46435031
+98;H. San Martin (La Plata);Hospital Interzonal General de Agudos General Jose de San Martin;La Plata;La Plata;Buenos Aires;XI;PBA;2;publica;provincial;-57.92351648;-34.92397419
+99;H. Tetamanti (Mar del Plata);Hospital Interzonal Especializado Materno Infantil Dr. Victorio Tetamanti;Mar del Plata;General Pueyrredon;Buenos Aires;VIII;PBA;2;publica;provincial;-57.55288612;-38.00990352
+100;CAPS Ricardo Rojas (FV) ;CAPS Ricardo Rojas ;;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.23373317;-34.82184787
+101;H. R. Carrillo (E. Rios);Hospital Materno Infantil Dr. Ramon Carrillo;;Concordia;Entre Rios;;Otro;2;publica;provincial;-58.04106389924532;-31.387237019271666
+102;H.l Materno Infantil Argentina (Azul);HOSPITAL ZONAL ESPECIALIZADO EN PEDIATRIA ARGENTINA DIEGO;Azul;Azul;Buenos Aires;IX;PBA;2;publica;provincial;-59.86013829;-36.78182786
+103;H. Regional Villa Dolores (Cordoba);Hospital Regional Villa Dolores;Villa Dolores;San Javier ;Cordoba;;Otro;2;publica;provincial;-65.19391810477553;-31.945446967622367
+104;H. San Roque (La Plata);Hospital Interzonal General de Agudos San Roque;La Plata;La Plata;Buenos Aires;XI;PBA;2;publica;provincial;-58.00792476;-34.89115717
+105;H. Santa Teresita (Chubut);Hospital Subzonal Santa Teresita (Chubut);Rawson;Rawson;Chubut;;Otro;2;publica;provincial;-65.10762103699798;-43.296304884757824
+106;H. Pediatrico (Corrientes);Hospital Pediatrico Juan Pablo II (Corrientes);Capital;Capital;Corrientes;;Otro;3;publica;provincial;-58.81882207735419;-27.475605497519027
+107;Centro Privado Accord Salud (CABA);Centro Privado Accord Salud (CABA);CABA;CABA;CABA;;Otro;3;obra social;privada;-58.404128699588846;-34.61036709777194
+108;UPA 5 Longchamps (AB);UPA 5 Longchamps (Alte. Brown);Longchamps;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.38780599;-34.8572
+109;CAPS Ant. Argent (Q);CAPS Antartida Argentina (Quilmes);;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.22997578;-34.73723522
+110;H. Goitia (Avellaneda);HOSPITAL SUBZONAL ESPECIALIZADO MATERNO INFANTIL ANA GOITIA;;Avellaneda;Buenos Aires;VI;RS VI;2;publica;provincial;-58.35105957;-34.66564636
+111;US 4 (Avellaneda);Unidad Sanitaria 4 (Avellaneda);;Avellaneda;Buenos Aires;VI;RS VI;1;publica;municipal;-58.36230354;-34.65254078
+112;H. de Pehuajo;HOSPITAL DE GESTION DESCENTRALIZADO REGION SANITARIA II - Hospital Municipal de Pehuajo;Pehuajo;Pehuajo;Buenos Aires;II;PBA;1;publica;provincial;-61.89743694;-35.80816802
+113;CAPS Villa Monica (FV);CAPS Villa Monica - Dr. Amador Roselli (FVarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.26963657;-34.8351065
+114;H. de Campana;UNIDAD HOSPITALARIA SAN JOSE (CAMPANA);Campana;Campana;Buenos Aires;V;PBA;2;publica;municipal;-58.94834767;-34.16893104
+115;CAPS San Eduardo (FV);CAPS San Eduardo (FVarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.28186582;-34.78380255
+116;CAPS Santa Rosa (FV);CAPS Santa Rosa (FVarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.29172287;-34.83019844
+117;Clinica de San Justo (La Matanza);Clinica del Nino de San Justo;San Justo;La Matanza;Buenos Aires;XII;PBA;2;privada;privada;-58.568609493152955;-34.68024016338393
+118;US 9 Isla Maciel (Avellaneda);Unidad Sanitaria 9 Isla Maciel (Dock Sud);Dock Sud;Avellaneda;Buenos Aires;VI;RS VI;1;publica;municipal;-58.35405386;-34.64030117
+119;H. de Bolivar;HOSPITAL SUBZONAL DR. MIGUEL L. CAPREDONI - Bolivar (Buenos Aires);Bolivar;Bolivar;Buenos Aires;IX;PBA;2;publica;municipal;-61.1235304;-36.23714864
+120;Secret. de Salud (FV);Secretar�a de Salud (FVarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;0;publica;municipal;-58.28888084;-34.80884846
+121;CAPS Villa Hudson (FV);CAPS Villa Hudson Evaristo Rodriguez (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.23232048;-34.8400198
+122;H. Santa Lucia (San Pedro);HOSPITAL LOCAL SANTA LUCIA (San Pedro);San Pedro;San Pedro;Buenos Aires;IV;PBA;2;publica;municipal;-59.88134486;-33.87896831
+123;CAPS 29 B. Luz (B);CAPS 29 Barrio Luz (Berazategui);;Berazategui;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.18794402;-34.79040963
+124;H. Balestrini (La Matanza);HOSPITAL ZONAL GENERAL DE AGUDOS DR. ALBERTO EDGARDO BALESTRINI;Ciudad Evita;La Matanza;Buenos Aires;XII;PBA;2;publica;provincial;-58.53348163;-34.70738723
+125;H. Santisima Trinidad (Cordoba);Hospital de Ninos de la Santisima Trinidad;Cordoba;Cordoba;Cordoba;;Otro;3;publica;provincial;-64.16810599424792;-31.427422493644404
+126;Ctro. Nefrologico del Noroeste;Centro Nefrologico del Noroeste;Junin;Junin;Buenos Aires;III;PBA;2;privada;privada;-60.96011291035816;-34.59366225732531
+127;Inst. Vaccarezza (CABA);INSTITUTO DE TISIONEUMONOLOGIA PROFESOR DR. RAUL VACCAREZZA;CABA;CABA;CABA;;Otro;2;publica;nacional;-58.39019752560027;-34.639339015116654
+128;CS  Ex Pepsi (FV);CENTRO DE SALUD PRESIDENTE PERON Ex Pepsi (FVarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.21788378;-34.82899494
+129;H. Marzetti (Canuelas);Hospital Municipal Dr. Angel Marzetti;Canuelas;Canuelas;Buenos Aires;XI;PBA;1;publica;municipal;-58.76337093;-35.05996392
+130;Obra Social OSTEL (CABA);Obra Social OSTEL;CABA;CABA;CABA;;Otro;2;privada;obra social;-58.40070860504151;-34.62842014234495
+131;H. de Quemados (CABA);HOSPITAL DE QUEMADOS DR. ARTURO UMBERTO ILLIA;CABA;CABA;CABA;;Otro;3;publica;municipal;-58.43182500840124;-34.625372359802085
+132;CAPS Padre Gino (FV);CAPS Padre Gino (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.22691517;-34.82678179
+133;CAPS Km 26 (FV);CAPS Km 26 - E. SCROCCH (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.30050184;-34.8039531
+134;CAPS La Capilla (FV);CAPS Bengoechea - La Capilla (Fvarela);La Capilla;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.26641642;-34.92292257
+135;CAPS San Francisco (FV);CAPS San Francisco (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.27298441;-34.86802357
+136;CAPS  Pico de Oro (FV);CAPS  Boccuzzi - Pico de Oro (FVarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.28580043;-34.83773224
+137;CIC Trote (FV);CIC Pista de Trote (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.26463807;-34.8249119
+138;CAPS La Sirena (FV);CAPS La Sirena (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.29273394;-34.7829202
+139;CAPS Tronquitos (FV);CAPS Los Tronquitos (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.26625611;-34.94660527
+140;CAPS Villa Argentina (FV);CAPS Villa Argentina (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.2981851;-34.81263182
+141;CAPS El Parque (FV);CAPS El Parque (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.18657446;-34.8639091
+142;CAPS El Molino (FV);CAPS 20 de Junio - El Molino (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.29165759;-34.80042558
+143;CAPS Carolina II (FV);CAPS Carolina II (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.19583515;-34.82292218
+144;CAPS Villa del Plata (FV);CAPS Villa del Plata (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.25474896;-34.8019403
+145;CAPS Sarmiento (FV);CAPS Sarmiento (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.27215693;-34.8525204
+146;CAPS Villa Angelica (FV);CAPS Villa Angelica (Fvarela);;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.26133918;-34.79710296
+147;CAPS 19 Centenario Sur (B);CAPS 19 Centenario Sur (Berazategui);;Berazategui;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.21195987;-34.80167468
+148;Obra Social - general;Obra Social - general;Varios;Varios;Varios;;Otro;0;privada;obra social;-58.36021032512901;-34.60415553011176
+149;H. Unzue;HOSPITAL SUBZONAL SATURNINO E. UNZUE - 25 de mayo;;25 de Mayo;Buenos Aires;X;PBA;2;publica;municipal;-60.16045834;-35.42555343
+150;Clinica Espora;CLINICA ESPORA;;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;privada;privada;-58.38721325080775;-34.79641676844845
+151;US 5 Longchamps (AB);UNIDAD SANITARIA N� 5 RAYO DE SOL DE LONGCHAMPS;Longchamps;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.40599866;-34.87131324
+152;Hospital Modular Alvarez (AB);Hospital Modular - UPA 24  (Longchamps);Longchamps;Almirante Brown;Buenos Aires;VI;Subregion Sudeste;3;publica;municipal;-58.38780599;-34.8572
+153;H. Fosatti (Balcarse);HOSPITAL SUBZONAL MUNICIPAL DR. FELIPE A. FOSATTI;;Balcarse;Buenos Aires;VIII;PBA;2;publica;municipal;-58.25120738;-37.85299671
+154;H. Larrain (Berisso);HOSPITAL ZONAL GENERAL AGUDOS DR. LARRAIN;Berisso;Berisso;Buenos Aires;XI;PBA;2;publica;provincial;-57.88924902;-34.86637362
+155;H. F. Caram (Brandsen);HOSPITAL MUNICIPAL FRANCISCO CARAM;;Brandsen;Buenos Aires;XI;PBA;2;publica;municipal;-58.22474374;-35.18063439
+156;US Gomez (Brandsen);UNIDAD SANITARIA GOMEZ - Brandsen;Brandsen;Brandsen;Buenos Aires;XI;PBA;1;publica;municipal;-58.16546916;-35.06888504
+157;H. Grierson (CABA);HOSPITAL General de Agudos CECILIA GRIERSON - CENTRO DE SALUD INTEGRAL;CABA;CABA;CABA;;Otro;2;publica;municipal;-58.45494998991627;-34.67168537957619
+158;H. Durand (CABA);HOSPITAL GENERAL DE AGUDOS DR. CARLOS G. DURAND;CABA;CABA;CABA;;Otro;3;publica;municipal;-58.43762636988664;-34.6097871191277
+159;H. Mat. Inf. Sarda (CABA);HOSPITAL MATERNO INFANTIL RAMON SARDA;CABA;CABA;CABA;;Otro;3;publica;municipal;-58.40285109315467;-34.63432177538722
+160;H. Cuenca Alta (Canuelas);HOSPITAL DE CUENCA ALTA NESTOR KIRCHNER;Canuela;Canuelas;Buenos Aires;XI;PBA;2;publico;nacional;-58.7319883;-35.02592698
+161;H. Ninos Eva Peron (Catamarca);HOSPITAL SANITARIO INTERZONAL DE NINOS EVA PERON - Catamarca;Catamarca;Capital;Catamarca;;Otro;3;publica;provincial;-65.7860102087685;-28.474420839546866
+162;H. Misericordia (Cordoba);HOSPITAL NUESTRA SE�ORA DE LA MISERICORDIA - CORDOBA;Cordoba;Capital;Cordoba;;Otro;3;publica;provincial;-64.19663863950134;-31.43303584212749
+163;H. Mat. Inf. (Salta);HOSPITAL PUBLICO MATERNO INFANTIL - Salta;Salta;Capital;Salta;;Otro;3;publica;provincial;-65.41496725161443;-24.77219034219436
+164;H. G. Rawson (Salta);HOSPITAL PUBLICO DE GESTION DESCENTRALIZADA DR. GUILLERMO RAWSON;San Juan;Capital;San Juan;;Otro;3;publica;provincial;-68.51272654946887;-31.53939694579459
+165;H. Pediatrico San Luis (San Luis);HOSPITAL Pediatrico SAN LUIS;san Luis;Capital;San Luis;;Otro;3;publica;provincial;-66.3190381426942;-33.29574650486646
+166;H. Nuestra Senora del Carmen (Carmen de Areco);HOSPITAL LOCAL GENERAL DE AGUDOS NUESTRA SE�ORA DEL CARMEN;Carmen de Areco;Carmen de Areco;Buenos Aires;IV;PBA;2;publica;provincial;-59.82408691;-34.38863687
+167;H. J. Ferre (Santa Fe);HOSPITAL DR. JAIME FERRE;Rafaela;Castellanos;Santa Fe;;Otro;2;publica;provincial;-61.5008564863494;-31.244262322897605
+168;H. R. Carrillo (Castelli);HOSPITAL MUNICIPAL DR. RAMON CARRILLO - CASTELLI;Castelli;Castelli;Buenos Aires;XI;PBA;1;publica;municipal;-57.80380395;-36.09824073
+169;H. Nuestra Senora (Chacabuco);HOSPITAL MUNICIPAL NUESTRA SENORA DEL CARMEN;Chacabuco;Chacabuco;Buenos Aires;III;PBA;2;publica;municipal;-60.46822631;-34.64958151
+170;H. G. Alvarez (Chos Malal);HOSPITAL CHOS MALAL - DR. GREGORIO ALVAREZ;Chos Malal;Chos Malal;Neuquen;;Otro;2;publica;provincial;-70.27339829306759;-37.38127344895879
+171;H. San Benjamin (E. Rios);HOSPITAL SAN BENJAMIN - Colon (E. Rios);Colon;Colon;Entre Rios;;Otro;2;publica;provincial;-58.136555776568294;-32.22447591840879
+172;H. A. Zabala (Jujuy);HOSPITAL DR. ARTURO ZABALA;;El Carmen;Jujuy;;Otro;2;publica;provincial;-65.11844661342336;-24.373844178184772
+173;H. del Bicentenario (E. Echeverria);HOSPITAL DE ALTA COMPLEJIDAD DEL BICENTENARIO ESTEBAN ECHEVERRIA;Esteban Echeverria;Esteban Echeverria;Buenos Aires;VI;RS VI;3;publica;nacional; -58.46545266618964;-34.80776534876886
+174;H. San Jose (E. de la Cruz);HOSPITAL MUNICIPAL SAN JOSE - E. de la Cruz;Capilla del Senor;Exaltacion de la Cruz;Buenos Aires;V;PBA;2;publica;municipal;-59.10414155;-34.28761224
+175;US La Esmeralda (FV);UNIDAD SANITARIA LA ESMERALDA;;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.28468929;-34.8210868
+176;US Las Malvinas (FV);UNIDAD SANITARIA LAS MALVINAS;;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.32618153;-34.80772539
+177;CS San Rudecindo (FV);C.S. SAN RUDECINDO;;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.20527824;-34.81860447
+178;CS Villa Aurora (FV);C.S. VA. AURORA;;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.28686736;-34.77994961
+179;Hospital Modular (FV);Hospital Modular - UPA 11 (Gob. Costa);Gobernador Costa;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;3;publica;provincial;-58.29634564;-34.80679616
+180;H. De La Fuente (G. Belgrano);HOSPITAL MUNICIPAL JUAN E. DE LA FUENTE;;General Belgrano;Buenos Aires;XI;PBA;2;publica;municipal;-58.49800373;-35.76336367
+181;H. Alende (Mar del Plata);HOSPITAL INTERZONAL GENERAL DE AGUDOS DR. O. ALENDE DE MAR DEL PLATA;Mar del Plata;General Pueyrredon;Buenos Aires;VIII;PBA;2;publica;provincial;-57.60117646;-37.99472032
+182;H. B. Sommer (G. Rodriguez);HOSPITAL NACIONAL DR. BALDOMERO SOMMER;;General Rodriguez;Buenos Aires;VII;PBA;2;publica;nacional;-59.0609732;-34.7202477
+183;H. Eva Peron (San Martin);HOSPITAL INTERZONAL GENERAL DE AGUDOS EVA PERON;General San Mart�n;General San Mart�n;Buenos Aires;V;PBA;2;publica;provincial;-58.55371318;-34.57119552
+184;H. Thompson (San Martin);HOSPITAL MUNICIPAL DR. DIEGO E. THOMPSON;General San Martin;General San Martin;Buenos Aires;V;PBA;2;publica;municipal;-58.54473551;-34.58123083
+185;H. Centenario (Entre Rios);HOSPITAL CENTENARIO;Gualeguaychu;Gualeguaychu;Entre Rios;;Otro;3;publica;provincial;-58.53206609903123;-33.010187255645846
+186;H. Rio Gallegos (Santa Cruz);Hospital Regional Rio Gallegos;Rio Gallegos;Guer Aike;Santa Cruz;;Otro;3;publica;provincial;-69.21981395912894;-51.62803952547101
+187;H. S. Galvagni (H. Irigoyen);HOSPITAL MUNICIPAL DR. SAVERIO GALVAGNI - Henderson;Henderson;Hipolito Irigoyen;Buenos Aires;II;PBA;2;publica;municipal;-61.71702847;-36.31115095
+188;H. Mat. Inf. San Clemente (La Costa);HOSPITAL LOCAL MATERNO INFANTIL DE SAN CLEMENTE DEL TUYU;San Clemente del Tuyu;La Costa;Buenos Aires;VIII;PBA;2;publica;municipal;-56.72569315;-36.35808747
+189;H. Espanol (La Plata);HOSPITAL ESPA�OL (La Plata);La Plata;La Plata;Buenos Aires;XI;PBA;3;privada;privada;-57.96710362198136;-34.90542038715193
+190;H. A. Korn (La Plata);HOSPITAL INTERZONAL DE AGUDOS Y CRONICOS DR. ALEJANDRO KORN;La Plata;La Plata;Buenos Aires;XI;PBA;2;publica;provincial;-58.05470422;-34.95524616
+191;Centro M. Romero (La Plata);CENTRO PROVINCIAL DE ATENCION - JOSE MELCHOR ROMERO (LA PLATA);Melchor Romero;La Plata;Buenos Aires;XI;PBA;1;publica;provincial;-58.0057227395034;-34.90017034877
+192;H. Las Flores (Las Flores);HOSPITAL SUBZONAL GENERAL LAS FLORES;Las Flores;Las Flores;Buenos Aires;IX;PBA;2;publica;provincial;-59.1118642;-36.00826212
+193;H. Lobos (Lobos);HOSPITAL ZONAL GENERAL LOBOS;;Lobos;Buenos Aires;X;PBA;2;publica;provincial;-59.09209131;-35.18377582
+194;H. Movil Ambulante (Mal. Argentinas);HOSPITAL MOVIL AMBULANTE 110 DE MALVINAS ARGENTINAS;Grand Bourg;Malvinas Argentinas;Buenos Aires;V;PBA;1;publica;municipal;-58.75086892;-34.48425392
+195;H. R. Carrillo (Mal. Argentinas);HOSPITAL MUNICIPAL DR. RAMON CARRILLO;Los Polvorines;Malvinas Argentinas;Buenos Aires;V;PBA;2;publica;municipal;-58.69376869;-34.49827915
+196;H. Dubarry (Mercedes);HOSPITAL ZONAL GENERAL AGUDOS BLAS DUBARRY;;Mercedes;Buenos Aires;X;PBA;2;publica;provincial;-59.43612138;-34.65528771
+197;H. P. Chutro (Merlo);HOSPITAL MUNICIPAL MATERNO INFANTIL DR. PEDRO CHUTRO;;Merlo;Buenos Aires;VII;PBA;2;publica;municipal;-58.6962997;-34.66807834
+198;H. San Antonio de Padua (Navarro);HOSPITAL MUNICIPAL SAN ANTONIO DE PADUA;Padua;Navarro;Buenos Aires;X;PBA;2;publica;municipal;-59.27049599;-35.00733174
+199;H. E.Ferreyra (Necochea);HOSPITAL MUNICIPAL DR. EMILIO FERREYRA;Necochea;Necochea;Buenos Aires;VII;PBA;1;publica;municipal;-58.76057516;-38.53785741
+200;H. Obera (Misiones);HOSPITAL SAMIC DE OBERA - NIVEL III;Obera;Obera;Misiones;;Otro;3;publica;SAMIC;-55.144162988275625;-27.491123377518427
+201;H. Mat. Inf. San Roque (E. Rios);HOSPITAL MATERNO INFANTIL SAN ROQUE - Parana (E. Rios);Parana;Parana;Entre Rios;;Otro;3;publica;provincial;-60.52104803001498;-31.7301015467958
+202;H. Benincasa (Pehuajo);HOSPITAL MUNICIPAL DR. FRANCISCO BENINCASA;Juan Jose Paso;Pehuajo;Buenos Aires;II;PBA;2;publica;municipal;-62.29871105;-35.85583
+203;H. San Jose (Pergamino);HOSPITAL INTERZONAL GENERAL DE AGUDOS SAN JOSE DE PERGAMINO;Pergamino;Pergamino;Buenos Aires;IV;PBA;2;publica;provincial;-60.58514133;-33.91037045
+204;H. C. Grierson (Presidente Peron);HOSPITAL ZONAL GENERAL DE AGUSDOS DRA. CECILIA GRIERSON;;Presidente Peron;Buenos Aires;VI;RS VI;2;publica;provincial;-58.38984396;-34.92044651
+205;US Sanitaria (Pte. Peron);UNIDAD SANITARIA GUERNICA;Guernica;Presidente Peron;Buenos Aires;VI;RS VI;1;publica;municipal;-58.36919771;-34.91621677
+206;C. Gastroenterologia (Q);CENTRO DE GASTROENTEROLOGIA SAGRADO CORAZON DE JESUS;;Quilmes;Buenos Aires;VI;Subregion Sudeste;2;privada;privada;-58.249390129368486;-34.724357876052494
+207;Clinica Solano (Q);CLINICA SOLANO MEDICAL CENTER;;Quilmes;Buenos Aires;VI;Subregion Sudeste;2;privada;privada;-58.31229355620509;-34.77928615625896
+208;UPA 17 (Q);UPA 17 - Bernal;Bernal;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.32938287;-34.73698434
+209;Hospital Modular (Q);Hospital Modular 10 de Bernal Oeste - UPA 17;Bernal Oeste;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;provincial;-58.3297390423269;-34.73626962767904
+210;CAPS Barrio Valle Grande (San Juan);CAPS BARRIO VALLE GRANDE - Rawson (San Juan);;Rawson;San Juan;;Otro;1;publica;municipal;-68.59717134279774;-31.56661685262156
+211;H. Eva Peron (Rosales);HOSPITAL LOCAL GENERAL EVA PERON;Punta Alta;Rosales;Buenos Aires;I;PBA;2;publica;municipal;-62.06697564;-38.87669309
+212;Sanatorio R. Garcia (Santa Fe);SANATORIO REGIONAL ROSENDO GARCIA;Rosario;Rosario;Santa Fe;;Otro;2;privada;obra social;-60.63479644302748;-32.95347563568271
+213;CAPS 55 Barrio 17 de Oct. (Salta);CENTRO DE SALUD N� 55 - BARRIO 17 DE OCTUBRE;Salta;Salta;Salta;;Otro;1;publica;provincial;-65.39670349851029;-24.71849653267147
+214;H. de Salto;HOSPITAL LOCAL GENERAL DE SALTO;Salto;Salto;Buenos Aires;IV;PBA;2;publica;municipal;-60.25319278;-34.29639992
+215;H.Castelan (Chaco);HOSPITAL PEDIATRICO DR. AVELINO LORENZO CASTELAN;San Fernando;San Fernando;Chaco;;Otro;3;publica;provincial;-58.97733037017916;-27.456979532901656
+216;H. Cordero (San Fernando);HOSPITAL ZONAL GENERAL AGUDOS PETRONA V. DE CORDERO;;San Fernando;Buenos Aires;V;PBA;2;publica;provincial;-58.55225986;-34.4481131
+217;H. Mat. Inf. San Isidro (San Isidro);HOSPITAL MATERNO INFANTIL DE SAN ISIDRO;;San Isidro;Buenos Aires;V;PBA;2;publica;municipal;-58.52285777;-34.47394435
+218;H. E. Ruffa (San Pedro);HOSPITAL SUBZONAL GENERAL DR. EMILIO RUFFA;San Pedro;San Pedro;Buenos Aires;IV;PBA;2;publica;municipal;-59.67245319;-33.68511093
+219;H. San Vicente de Paul (Salta);HOSPITAL SAN VICENTE DE PAUL;Oran;San Ramon de la Nueva Oran;Salta;;Otro;3;publica;provincial;-64.32362968459701;-23.143310952461736
+220;H. R. Carrillo (San Vicente);HOSPITAL MUNICIPAL DR. RAMON CARRILLO - SAN VICENTE;;San Vicente;Buenos Aires;V;PBA;2;publica;municipal;-58.43207506;-35.02666401
+221;H. Comunitario Evita (La Pampa);HOSPITAL COMUNITARIO EVITA - Santa Rosa (La Pampa);Santa Rosa;Santa Rosa;La Pampa;;Otro;2;publica;provincial;-64.28635353689663;-36.64711951815516
+222;H. Santamarina (Tandil);HOSPITAL MUNICIPAL RAMON SANTAMARINA;Tandil;Tandil;Buenos Aires;VIII;PBA;2;publica;municipal;-59.13825024;-37.31477912
+223;Centro de Salud (Tres Arroyos);CENTRO MUNICIPAL DE SALUD DEL PARTIDO DE TRES ARROYOS ;Tres Arroyos;Tres Arroyos;Buenos Aires;I;PBA;1;publica;municipal;-60.29290433;-38.36966192
+224;H. R. Carrillo (Tres de Febrero);HOSPITAL ZONAL GENERAL AGUDOS PROF. DR. RAMON CARRILLO;;Tres de Febrero;Buenos Aires;VII;PBA;2;publica;provincial;-58.54982572;-34.63114201
+225;H. C. Bocalandro (Tres de Febrero);HOSPITAL ZONAL GENERAL DE AGUDOS DR. CARLOS BOCALANDRO;;Tres de Febrero;Buenos Aires;VII;PBA;2;publica;provincial;-58.60200721;-34.56296259
+226;Sanatorio San Jorge (T. Del Fuego);CENTRO DE PEDIATRIA SANATORIO SAN JORGE;Ushuaia;Ushuaia;Tierra del Fuego;;Otro;2;privada;privada;-68.32537219912396;-54.81524674226591
+227;MSAL PBA;MINISTERIO DE SALUD DE LA PROVINCIA DE BUENOS AIRES;La Plata;La Plata;Buenos Aires;;Otro;0;publica;provincial;-57.95940471220231;-34.92505632056137
+228;HEC Guardia;HEC Guardia;Florencio Varela;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;3;publica;nacional;-58.26910716;-34.77174475
+229;US N�8 (Berazategui);Centro de Salud N�8;;Berazategui;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.22996503;-34.76705766
+230;H. Militar Argerich (CABA);HOSPITAL MILITAR CENTRAL CIRUJANO MAYOR DR. COSME ARGERICH;CABA;CABA;CABA;;Otro;3;publica;ejercito;-58.43657707599267;-34.57036960253196
+231;H. Privado Sudamericano (La Plata);HOSPITAL PRIVADO SUDAMERICANO;La Plata;La Plata;Buenos Aires;XI;PBA;3;privada;privada;-57.95359216463208;-34.90315425162552
+232;H. N. Sbarra (La Plata);HOSPITAL ZONAL ESPECIALIZADO DR. NOEL H. SBARRA;La Plata;La Plata;Buenos Aires;XI;PBA;2;publica;provincial;-57.93495178;-34.92754707
+233;Nueva Clinica del Nino (La Plata);Nueva Clinica del Nino;La Plata;La Plata;Buenos Aires;XI;PBA;3;privada;privada;-57.941679189405924;-34.926317946931576
+234;H. Tobar Garcia (CABA);HOSPITAL INFANTO JUVENIL CAROLINA TOBAR GARCIA;CABA;CABA;CABA;;Otro;2;publica;municipal;-58.382196439195596;-34.635606805983436
+235;H. R. Favaloro (Zarate);HOSPITAL INTERMEDIO MUNICIPAL DR. RENE FAVALORO;Zarate;Zarate;Buenos Aires;V;PBA;2;publica;municipal;-59.05419257;-34.10997765
+236;H. San Berbardo (Salta);HOSPITAL SAN BERNARDO;Salta;Capital;Salta;;Otro;2;publica;provincial;-65.39960692169724;-24.79157186989692
+237;CS Don Jose (FV);Centro de Salud Don Jose;Florencio Varela;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.31161946;-34.79504881
+238;CAPS Zeballos II (FV);Centro de Salud  ZEBALLOS II;Zeballos;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.2493761;-34.80812245
+239;CS Padre Mujica (FV);Centro de Salud  PADRE MUJICA (LUJAN);Florencio Varela;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.3133635;-34.80876922
+240;CS Ing. Allan (FV);Centro de Salud  INGENIERO ALLAN;Florencio Varela;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.19900215;-34.86883301
+241;CS Martin Fierro (FV);Centro de Salud  MARTIN FIERRO;Florencio Varela;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.2743446;-34.77903699
+242;CS Santo Tomas (FV);Centro de Salud  SANTO TOMAS;Florencio Varela;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.24484;-34.79743608
+243;CS Sarmiento (FV);Centro de Salud  SARMIENTO;Florencio Varela;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.27215693;-34.8525204
+244;CS La Rotonda (FV);Centro de Salud  LA ROTONDA;Florencio Varela;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.2080271;-34.84236341
+245;Hogar San Patricio (La Plata);Hogar San Patricio;City Bell;La Plata;Buenos Aires;XI;PBA;1;privada;privada;-58.0840804833674;-34.88094555832173
+246;Hogar Guadalupe (FV);Hogar Guadalupe;Villa Angelica;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;privada;privada;-58.27169993361997;-34.79329673386087
+247;Clinica Boedo (L. Zamora);Cl�nica Boedo SRL;Lomas de Zamora;Lomas de Zamora;Buenos Aires;VI;RS VI;2;privada;privada;-58.40380386356481;-34.75866041898685
+248;Clinica Sagrado Corazon (Tigre);Clinica Sagrado Corazon Don Torcuato;Don Torcuato;Tigre;Buenos Aires;V;PBA;2;privada;privada;-58.640434890104686;-34.498828372590296
+249;CAAME - La Patriada;Centro La Patriada - Polideportivo;Santa Rosa;Florencio Varela;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.280324406274104;-34.804329345404575
+250;CAS - UNQUI;Centro de Aislamiento Sanitario en la Universidad Nacional de Quilmes ;Bernal;Quilmes;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.27817409686385;-34.706479553070835
+251;CAS - San Pablo;Casa de Retiro Colegio San Pablo Apostol;El Pato;Berazategui;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.17737271034773;-34.88637356326775
+252;CAS - Escuela Dantas;Escuela de Polic�a Coronel Julio S. Dantas;Pereyra;Berazategui;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.14306131007783;-34.844020462206196
+253;CAS - CAPS 25;CAPS N� 25;Hudson;Berazategui;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.18787947409017;-34.816888942164724
+254;S. Finochietto (CABA);Sanatorio Finochietto;CABA;CABA;CABA;;Otro;3;privada;privada;-58.402374514129356;-34.5973878103818
+255;H. R. Carrillo (Stgo. Estero);HOSPITAL REGIONAL DR. RAMON CARRILLO;Santiago del Estero;Santiago del Estero;Santiago del Estero;;Otro;3;publica;provincial;-64.25045359105582;-27.80499185858972
+256;H. Dr. Larcade (San Miguel);HOSPITAL MUNICIPAL DR. RAUL LARCADE;San Miguel;San Miguel;Buenos Aires;V;PBA;2;publica;municipal;-58.72081658947244;-34.536618356473994
+257;H. San Vicente de Paul (Chascomus);HOSPITAL MUNICIPAL SAN VICENTE DE PAUL;Chascomus;Chascomus;Buenos Aires;XI;PBA;2;publica;municipal;-58.007326314717254;-35.57655763216766
+258;CAPS 25 Hudson (B);CAPS N� 25;Hudson;Berazategui;Buenos Aires;VI;Subregion Sudeste;1;publica;municipal;-58.18787947409017;-34.816888942164724
+259;H. Sancholuz (Laprida);HOSPITAL MUNICIPAL PEDRO S. SANCHOLUZ;Laprida;Laprida;Buenos Aires;IX;PBA;2;publica;municipal;-60.79612664329607;-37.55226880822444
+260;H. Pediatrico Falcon (Pilar);HOSPITAL MUNICIPAL PEDIATRICO FEDERICO FALCON;Del Viso;Pilar;Buenos Aires;V;PBA;2;publica;municipal;-58.791805583354574;-34.45179915066749
+261;H. B. Rivadavia (Gral. Alvear);HOSPITAL MUNICIPAL BERNARDINO RIVADAVIA;General Alvear;General Alvear;Buenos Aires;IX;PBA;2;publica;municipal;-59.967872173631726;-36.00981084706611
+262;H. Castellanos (Salta);HOSPITAL DR. JOAQUIN CASTELLANOS;General Guemes;General guemes;Salta;;Otro;2;publica;provincial;-65.08544732523089;-24.665164428357492

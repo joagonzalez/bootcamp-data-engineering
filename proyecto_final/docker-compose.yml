@@ -33,6 +33,10 @@ services:
       - ./etl_dag.py:/home/hadoop/airflow/dags/etl_dag.py:rw
       - ./etl_dag_automoviles_padre.py:/home/hadoop/airflow/dags/etl_dag_automoviles_padre.py:rw
       - ./etl_dag_automoviles_hijo.py:/home/hadoop/airflow/dags/etl_dag_automoviles_hijo.py:rw
+      - ./salud/:/home/hadoop/salud/:rw
+      - ./transformation_salud_derivaciones.py:/home/hadoop/scripts/transformation_salud_derivaciones.py:rw
+      - ./transformation_salud_efectores.py:/home/hadoop/scripts/transformation_salud_efectores.py:rw
+      - ./etl_dag_salud.py:/home/hadoop/airflow/dags/etl_dag_salud.py:rw
     ports:
       - 8010:8010 # airflow
       - 8088:8088 # hadoop infra UI
