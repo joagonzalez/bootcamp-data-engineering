@@ -358,6 +358,10 @@ SELECT
 
 <img src="img/4.png" />
 
+<img src="img/meta11.png" />
+<img src="img/meta12.png" />
+
+
 10) Cuales son las 10 aeronaves más utilizadas entre el 01/01/2021 y el 30/06/22 que despegaron desde la Ciudad autónoma de Buenos Aires o de Buenos Aires, exceptuando aquellas aeronaves que no cuentan con nombre. Mostrar consulta y Visualización
 
 ```sql
@@ -398,6 +402,11 @@ SELECT
 ```
 
 <img src="img/5.png" />
+
+<img src="img/meta13.png" />
+<img src="img/meta15.png" />
+
+
 
 11. Qué datos externos agregaría en este dataset que mejoraría el análisis de los datos
 Tener información de pasajeros daria mucho valor a cualquier tipo de análisis, ya sea de demanda, para detectar servicios mas utilizados, etc.
