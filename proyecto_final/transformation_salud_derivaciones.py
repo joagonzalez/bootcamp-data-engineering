@@ -4,6 +4,7 @@ from pyspark.sql.session import SparkSession
 from pyspark.sql.functions import to_date, col
 from pyspark.sql.functions import regexp_replace
 from pyspark.sql.functions import round
+from pyspark.sql.functions import trim
 
 
 sc = SparkContext('local')
@@ -55,6 +56,9 @@ derivaciones = derivaciones.withColumn("fecha_nacimiento", to_date(col("fecha_na
 
 derivaciones = derivaciones.withColumn("anio_evento", col("anio_evento").cast("int"))
 derivaciones = derivaciones.withColumn("altura", col("altura").cast("int"))
+
+derivaciones = derivaciones.withColumn("efector_a_derivar", trim(derivaciones.efector_a_derivar))
+
 
 derivaciones.show(5)
 derivaciones.printSchema()

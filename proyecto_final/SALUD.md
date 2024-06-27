@@ -137,6 +137,7 @@ from pyspark.sql.session import SparkSession
 from pyspark.sql.functions import to_date, col
 from pyspark.sql.functions import regexp_replace
 from pyspark.sql.functions import round
+from pyspark.sql.functions import trim
 
 
 sc = SparkContext('local')
@@ -188,6 +189,9 @@ derivaciones = derivaciones.withColumn("fecha_nacimiento", to_date(col("fecha_na
 
 derivaciones = derivaciones.withColumn("anio_evento", col("anio_evento").cast("int"))
 derivaciones = derivaciones.withColumn("altura", col("altura").cast("int"))
+
+derivaciones = derivaciones.withColumn("efector_a_derivar", trim(derivaciones.efector_a_derivar))
+
 
 derivaciones.show(5)
 derivaciones.printSchema()
@@ -320,4 +324,88 @@ FROM
 GROUP BY
   ubicacion_relacional,
   anio_evento
+```
+
+Cantidad de derivaciones por mes
+
+```sql
+SELECT 
+  year(date_format(from_unixtime(unix_timestamp(fecha_egreso, 'M/d/yyyy')), 'yyyy-MM-dd')) AS year,
+  month(date_format(from_unixtime(unix_timestamp(fecha_egreso, 'M/d/yyyy')), 'yyyy-MM-dd')) AS month,
+  COUNT(*) AS count
+FROM 
+  derivaciones
+WHERE fecha_egreso IS NOT null
+GROUP BY 
+  year(date_format(from_unixtime(unix_timestamp(fecha_egreso, 'M/d/yyyy')), 'yyyy-MM-dd')),
+  month(date_format(from_unixtime(unix_timestamp(fecha_egreso, 'M/d/yyyy')), 'yyyy-MM-dd'))
+ORDER BY year, month DESC
+```
+
+Derivaciones sin derivador por año
+
+```sql
+SELECT
+  anio_evento,
+  count(*) as contador
+FROM
+  derivaciones
+WHERE
+  efector_derivador IS NULL
+GROUP BY
+  anio_evento
+```
+
+Listas de vinculos por mes
+
+```sql
+SELECT 
+  CASE
+    WHEN efector_derivador IS NULL THEN 'SIN_DATO'
+    ELSE efector_derivador
+  END AS efector_derivador,
+  efector_de_atencion,
+  year(date_format(from_unixtime(unix_timestamp(fecha_egreso, 'M/d/yyyy')), 'yyyy-MM-dd')) AS year,
+  month(date_format(from_unixtime(unix_timestamp(fecha_egreso, 'M/d/yyyy')), 'yyyy-MM-dd')) AS month,
+  COUNT(*) AS count
+FROM 
+  derivaciones
+WHERE fecha_egreso IS NOT null
+GROUP BY 
+  year(date_format(from_unixtime(unix_timestamp(fecha_egreso, 'M/d/yyyy')), 'yyyy-MM-dd')),
+  month(date_format(from_unixtime(unix_timestamp(fecha_egreso, 'M/d/yyyy')), 'yyyy-MM-dd')),
+  efector_derivador,
+  efector_de_atencion
+ORDER BY year, month DESC
+```
+
+Ubicacion relacional por efector a derivar
+
+```sql
+SELECT
+  anio_evento,
+  ubicacion_relacional,
+  count(ubicacion_relacional) as cantidad
+FROM
+  (
+    derivaciones AS d
+    INNER JOIN efectores AS e ON d.efector_a_derivar = e.nombre_efector
+  )
+GROUP BY
+  ubicacion_relacional,
+  anio_evento
+```
+
+Ubicacion relacional por efector a derivar nulo
+
+```sql
+select sum(contador) from (SELECT
+  anio_evento,
+  count(*) as contador
+FROM
+  derivaciones
+WHERE
+  efector_a_derivar IS NULL
+GROUP BY
+  anio_evento) as principal
 ```
