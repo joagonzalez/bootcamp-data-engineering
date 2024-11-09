@@ -7,6 +7,13 @@
 ```bash
 hadoop@fbb56750a21f:~$ ls salud/
 derivaciones.csv  efectores.csv
+
+/home/hadoop/hadoop/bin/hdfs dfs -put /home/hadoop/salud/*.csv /ingest
+hdfs dfs -ls /
+
+# a hive se entra con comando homonimo
+# a hadoop se lo opera con el comando hdfs dfs
+# hive se lo puede consultar con metabase o dbeaver
 ```
 
 2) Crear 2 tablas en el datawarehouse, una para los vuelos realizados en 2021 y 2022 (2021-informe-ministerio.csv y 202206-informe-ministerio) y otra tabla para el detalle de los aeropuertos (aeropuertos_detalle.csv)

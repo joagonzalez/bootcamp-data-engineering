@@ -23,7 +23,7 @@ services:
       placement:
         constraints:
           - node.platform.os == linux
-          - node.hostname == lab-worker-01
+          #- node.hostname == lab-worker-01
 
   etl:
     image: joagonzalez/edvai-etl:v6
@@ -57,7 +57,7 @@ services:
       placement:
         constraints:
           - node.platform.os == linux
-          - node.hostname == lab-worker-01
+          #- node.hostname == lab-worker-01
     environment:
       - VIRTUAL_HOST=airflow.lab.qwerty.com.ar
       - LETSENCRYPT_HOST=airflow.lab.qwerty.com.ar
@@ -91,7 +91,7 @@ services:
       placement: 
         constraints: 
           - node.platform.os == linux
-          - node.hostname == lab-worker-01
+          # - node.hostname == lab-worker-01
 
   metabase:
     image: metabase/metabase:latest
@@ -128,7 +128,7 @@ services:
       placement:
         constraints:
           - node.platform.os == linux
-          - node.hostname == lab-worker-01
+          # - node.hostname == lab-worker-01
 
 volumes:
   postgres-db-volume: {}
